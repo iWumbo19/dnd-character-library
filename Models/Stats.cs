@@ -6,74 +6,15 @@ namespace DnDCharacterCreator.Models
 {
     public class Stats
     {
-        private readonly Dictionary<int, int> _levelProf = new Dictionary<int, int>()
-        {
-            {1,2 },
-            {2,2 },
-            {3,2 },
-            {4,2 },
-            {5,3 },
-            {6,3 },
-            {7,3 },
-            {8,3 },
-            {9,4 },
-            {10,4 },
-            {11,4 },
-            {12,4 },
-            {13,5 },
-            {14,5 },
-            {15,5 },
-            {16,5 },
-            {17,6 },
-            {18,6 },
-            {19,6 },
-            {20,6 },
-        };
-        private readonly Dictionary<int, int> _scoreMod = new Dictionary<int, int>()
-        {
-            {1,-5 },
-            {2,-4 },
-            {3,-4 },
-            {4,-3 },
-            {5,-3 },
-            {6,-2 },
-            {7,-2 },
-            {8,-1 },
-            {9,-1 },
-            {10,0 },
-            {11,0 },
-            {12,1 },
-            {13,1 },
-            {14,2 },
-            {15,2 },
-            {16,3 },
-            {17,3 },
-            {18,4 },
-            {19,4 },
-            {20,5 },
-            {21,5 },
-            {22,6 },
-            {23,6 },
-            {24,7 },
-            {25,7 },
-            {26,8 },
-            {27,8 },
-            {28,9 },
-            {29,9 },
-            {30,10 },
-        };
+        
 
         public int Level { get; set; }
         public int Proficiency
         {
-            get { return _levelProf[Level]; }
+            get { return Tables.LevelProf[Level]; }
             protected set { }
         }
-        public Race Race { get; set; }
-        public Class Class { get; set; }
-
-
-
+        
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Constiution { get; set; }
@@ -90,32 +31,32 @@ namespace DnDCharacterCreator.Models
 
         public int StrengthMod
         {
-            get { return _scoreMod[Strength]; }
+            get { return Tables.ScoreMod[Strength]; }
             set { }
         }
         public int DexterityMod
         {
-            get { return _scoreMod[Dexterity]; }
+            get { return Tables.ScoreMod[Dexterity]; }
             set { }
         }
         public int ConstitutionMod
         {
-            get { return _scoreMod[Constiution]; }
+            get { return Tables.ScoreMod[Constiution]; }
             set { }
         }
         public int IntelligenceMod
         {
-            get { return _scoreMod[Intelligence]; }
+            get { return Tables.ScoreMod[Intelligence]; }
             set { }
         }
         public int WisdomMod
         {
-            get { return _scoreMod[Wisdom]; }
+            get { return Tables.ScoreMod[Wisdom]; }
             set { }
         }
         public int CharismaMod
         {
-            get { return _scoreMod[Charisma]; }
+            get { return Tables.ScoreMod[Charisma]; }
             set { }
         }
 
@@ -233,18 +174,6 @@ namespace DnDCharacterCreator.Models
 
 
 
-
-
-
-
-        public int ToModifier(int rawScore, bool prof)
-        {
-            int returnScore = _scoreMod[rawScore];
-            if (prof == true)
-            {
-                returnScore += Proficiency;
-            }
-            return returnScore;
-        }
+        public int ToModifier(int rawScore, bool prof) => prof ? Tables.ScoreMod[rawScore] + Proficiency : Tables.ScoreMod[rawScore];
     }
 }
