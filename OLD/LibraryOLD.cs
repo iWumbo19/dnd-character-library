@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDCharacterCreator.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +12,20 @@ namespace Character_Creator
         private readonly Random rnd = new Random(Program.Seeder());
         //Stat Number Translators
         
-        public Dictionary<string, int> classHitDie = new Dictionary<string, int>()
+        public Dictionary<Class, int> classHitDie = new Dictionary<Class, int>()
         {
-            {"sorcerer",6 },
-            {"wizard",6 },
-            {"artificer",8 },
-            {"bard",8 },
-            {"cleric",8 },
-            {"druid",8 },
-            {"monk",8 },
-            {"rouge",8 },
-            {"warlock",8 },
-            {"fighter",10 },
-            {"paladin",10 },
-            {"ranger",10 },
-            {"barbarian",12 },
+            {Class.Sorcerer, 6 },
+            {Class.Wizard,6 },
+            {Class.Bard,8 },
+            {Class.Cleric,8 },
+            {Class.Druid,8 },
+            {Class.Monk,8 },
+            {Class.Rouge,8 },
+            {Class.Warlock,8 },
+            {Class.Fighter,10 },
+            {Class.Paladin,10 },
+            {Class.Ranger,10 },
+            {Class.Barbarian,12 },
         };
         public int SkillModMath(int rawScore, bool prof, int profBonus)
         {
