@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DnDCharacterCreator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,6 @@ namespace Character_Creator
     class BackstoryGeneratorOLD
     {
         //Instanciates Different Libraries for Reference
-        private readonly Library lib = new Library();
         private readonly NameGeneratorOLD names = new NameGeneratorOLD();
 
         private readonly List<string> backstoryBase = new List<string>();
@@ -134,7 +134,7 @@ namespace Character_Creator
                 player.NameReturn(), player.RaceReturn(), BackgroundOptions(), CharacterRelative(), HomeTowns(), TimeElapse(), GroupOfBaddies(), NameOfCoolWeapon(), EnemyBase()));
         }
 
-        public string BackgroundOptions() { return backgroundOptions[lib.RandomRoll(backgroundOptions.Count())]; }
+        public string BackgroundOptions() { return RNG.ReturnRandom(backgroundOptions); }
         public string HomeTowns() { return homeTowns[lib.RandomRoll(homeTowns.Count())]; }
         public string EnemyBase() { return enemyBase[lib.RandomRoll(enemyBase.Count())]; }
         public string TimeElapse() { return timeElapse[lib.RandomRoll(timeElapse.Count())]; }
