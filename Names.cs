@@ -6,8 +6,9 @@ using System.Text;
 
 namespace DnDCharacterCreator
 {
-    internal static class NameGenerator
+    internal static class Names
     {
+        // Dwarf Names
         private static readonly List<string> dwarfMale = new List<string>()
         {
             {"Adrik" },
@@ -86,7 +87,7 @@ namespace DnDCharacterCreator
             { "Ungart" }
         };
 
-        //Elf Names
+        // Elf Names
         private static readonly List<string> elfMale = new List<string>()
         {
             {"Adran" },
@@ -164,7 +165,7 @@ namespace DnDCharacterCreator
             {"Xiloscient (Goldpetal)" }
         };
 
-        //Halfing Names
+        // Halfing Names
         private static readonly List<string> halflingMale = new List<string>()
         {
             {"Alton" },
@@ -220,7 +221,7 @@ namespace DnDCharacterCreator
             {"Underbough" }
         };
 
-        //Human Names
+        // Human Names
         private static readonly List<string> humanMale = new List<string>()
         {
             {"Adran" },
@@ -366,7 +367,7 @@ namespace DnDCharacterCreator
             { "Ungart" }
         };
 
-        //Dragonborn Names
+        // Dragonborn Names
         private static readonly List<string> dragonbornMale = new List<string>()
         {
             {"Arjhan" },
@@ -429,7 +430,7 @@ namespace DnDCharacterCreator
             { "Yarjerit" }
         };
 
-        //Gnome Names
+        // Gnome Names
         private static readonly List<string> gnomeMale = new List<string>()
         {
             {"Alston" },
@@ -511,7 +512,7 @@ namespace DnDCharacterCreator
             {"Sparklegem" }
         };
 
-        //Halforc Names
+        // Halforc Names
         private static readonly List<string> halforcMale = new List<string>()
         {
             {"Dench" },
@@ -544,7 +545,7 @@ namespace DnDCharacterCreator
             {"Yevelda" }
         };
 
-        //Tiefling Names
+        // Tiefling Names
         private static readonly List<string> tieflingMale = new List<string>()
         {
             {"Akmenos" },
@@ -644,7 +645,6 @@ namespace DnDCharacterCreator
             string clanName = RNG.ReturnRandom(dwarfClan);
             return String.Format("{0} {1}", firstName, clanName);
         }
-
         private static string Elf()
         {
             int genderRoll = RNG.Roll(2);
@@ -652,7 +652,6 @@ namespace DnDCharacterCreator
             string familyName = RNG.ReturnRandom(elfFamily);
             return String.Format("{0} {1}", firstName, familyName);
         }
-
         private static string Halfling()
         {
             int genderRoll = RNG.Roll(2);
@@ -660,7 +659,6 @@ namespace DnDCharacterCreator
             string familyName = RNG.ReturnRandom(halflingFamily);
             return String.Format("{0} {1}", firstName, familyName);
         }
-
         private static string Human()
         {
             int genderRoll = RNG.Roll(2);
@@ -668,7 +666,6 @@ namespace DnDCharacterCreator
             string familyName = RNG.ReturnRandom(humanFamily);
             return String.Format("{0} {1}", firstName, familyName);
         }
-
         private static string Dragonborn()
         {
             int genderRoll = RNG.Roll(2);
@@ -676,7 +673,6 @@ namespace DnDCharacterCreator
             string familyName = RNG.ReturnRandom(dragonbornClan);
             return String.Format("{0} {1}", firstName, familyName);
         }
-
         private static string Gnome()
         {
             int genderRoll = RNG.Roll(2);
@@ -685,18 +681,15 @@ namespace DnDCharacterCreator
             string familyName = RNG.ReturnRandom(gnomeClan);
             return String.Format("{0} \"{1}\" {2}", firstName, nickName, familyName);
         }
-
         private static string Halfelf()
         {
             return Human(); // Half Elfs use same conventions as Humans
         }
-
         private static string Halforc()
         {
             int genderRoll = RNG.Roll(2);
             return genderRoll == 1 ? RNG.ReturnRandom(halforcMale) : RNG.ReturnRandom(halforcFemale);
         }
-
         private static string Tiefling()
         {
             int genderRoll = RNG.Roll(2);
