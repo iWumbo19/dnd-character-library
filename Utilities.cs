@@ -6,9 +6,6 @@ namespace DnDCharacterCreator
 {
     internal static class Utilities
     {
-        public static int GetEnumLength<T>()
-        {
-            return Enum.GetNames(typeof(T)).Length;
-        }
+        public static int GetEnumLength<T>() => Enum.GetNames(typeof(T)).Length;
     }
 }
