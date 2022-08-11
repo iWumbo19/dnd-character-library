@@ -1,13 +1,14 @@
-﻿using System;
+﻿using DnDCharacterCreator.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace DnDCharacterCreator
 {
-    internal class NameGenerator
+    internal static class NameGenerator
     {
-        private readonly List<string> dwarfMale = new List<string>()
+        private static readonly List<string> dwarfMale = new List<string>()
         {
             {"Adrik" },
             {"Alberich" },
@@ -40,7 +41,7 @@ namespace DnDCharacterCreator
             {"Viet" },
             {"Vondal" }
         };
-        private readonly List<string> dwarfFemale = new List<string>()
+        private static readonly List<string> dwarfFemale = new List<string>()
         {
             { "Amber" },
             { "Artin" },
@@ -66,7 +67,7 @@ namespace DnDCharacterCreator
             { "Torgga" },
             { "Vistra" }
         };
-        private readonly List<string> dwarfClan = new List<string>()
+        private static readonly List<string> dwarfClan = new List<string>()
         {
             { "Balderk" },
             { "Battlehammer" },
@@ -86,7 +87,7 @@ namespace DnDCharacterCreator
         };
 
         //Elf Names
-        private readonly List<string> elfMale = new List<string>()
+        private static readonly List<string> elfMale = new List<string>()
         {
             {"Adran" },
             {"Aelar" },
@@ -116,7 +117,7 @@ namespace DnDCharacterCreator
             {"Theren" },
             {"Varis" }
         };
-        private readonly List<string> elfFemale = new List<string>()
+        private static readonly List<string> elfFemale = new List<string>()
         {
             {"Adrie" },
             {"Althaea" },
@@ -149,7 +150,7 @@ namespace DnDCharacterCreator
             {"Valanthe" },
             {"Xanaphia" }
         };
-        private readonly List<string> elfFamily = new List<string>()
+        private static readonly List<string> elfFamily = new List<string>()
         {
             {"Amakiir (Gemflower)" },
             {"Amastacia(Starflower)" },
@@ -164,7 +165,7 @@ namespace DnDCharacterCreator
         };
 
         //Halfing Names
-        private readonly List<string> halflingMale = new List<string>()
+        private static readonly List<string> halflingMale = new List<string>()
         {
             {"Alton" },
             {"Ander" },
@@ -184,7 +185,7 @@ namespace DnDCharacterCreator
             {"Roscoe" },
             {"Wellby" }
         };
-        private readonly List<string> halflingFemale = new List<string>()
+        private static readonly List<string> halflingFemale = new List<string>()
         {
             {"Andry" },
             {"Bree" },
@@ -205,7 +206,7 @@ namespace DnDCharacterCreator
             {"Vani" },
             {"Verna" }
         };
-        private readonly List<string> halflingFamily = new List<string>()
+        private static readonly List<string> halflingFamily = new List<string>()
         {
             {"Brushgather" },
             {"Goodbarrel" },
@@ -220,7 +221,7 @@ namespace DnDCharacterCreator
         };
 
         //Human Names
-        private readonly List<string> humanMale = new List<string>()
+        private static readonly List<string> humanMale = new List<string>()
         {
             {"Adran" },
             {"Aelar" },
@@ -280,7 +281,7 @@ namespace DnDCharacterCreator
             {"Viet" },
             {"Vondal" }
         };
-        private readonly List<string> humanFemale = new List<string>()
+        private static readonly List<string> humanFemale = new List<string>()
         {
             {"Adrie" },
             {"Althaea" },
@@ -336,7 +337,7 @@ namespace DnDCharacterCreator
             { "Torgga" },
             { "Vistra" }
         };
-        private readonly List<string> humanFamily = new List<string>()
+        private static readonly List<string> humanFamily = new List<string>()
         {
             {"Amakiir (Gemflower)" },
             {"Amastacia(Starflower)" },
@@ -366,7 +367,7 @@ namespace DnDCharacterCreator
         };
 
         //Dragonborn Names
-        private readonly List<string> dragonbornMale = new List<string>()
+        private static readonly List<string> dragonbornMale = new List<string>()
         {
             {"Arjhan" },
             {"Balasar" },
@@ -386,7 +387,7 @@ namespace DnDCharacterCreator
             {"Tarhun" },
             {"Torinn" }
         };
-        private readonly List<string> dragonbornFemale = new List<string>()
+        private static readonly List<string> dragonbornFemale = new List<string>()
         {
             {"Akra" },
             {"Biri" },
@@ -406,7 +407,7 @@ namespace DnDCharacterCreator
             {"Thava" },
             {"Uadjit" }
         };
-        private readonly List<string> dragonbornClan = new List<string>()
+        private static readonly List<string> dragonbornClan = new List<string>()
         {
             { "Clenthtinthiallor" },
             { "Daardendrian" },
@@ -429,7 +430,7 @@ namespace DnDCharacterCreator
         };
 
         //Gnome Names
-        private readonly List<string> gnomeMale = new List<string>()
+        private static readonly List<string> gnomeMale = new List<string>()
         {
             {"Alston" },
             {"Alvyn" },
@@ -455,7 +456,7 @@ namespace DnDCharacterCreator
             {"Wrenn" },
             {"Zook" }
         };
-        private readonly List<string> gnomeFemale = new List<string>()
+        private static readonly List<string> gnomeFemale = new List<string>()
         {
             {"Bimpnottin" },
             {"Breena" },
@@ -480,7 +481,7 @@ namespace DnDCharacterCreator
             {"Waywocket" },
             {"Zanna" }
         };
-        private readonly List<string> gnomeClan = new List<string>()
+        private static readonly List<string> gnomeClan = new List<string>()
         {
             {"Beren" },
             {"Daergel" },
@@ -494,7 +495,7 @@ namespace DnDCharacterCreator
             {"Timbers" },
             {"Turen" }
         };
-        private readonly List<string> gnomeNickname = new List<string>()
+        private static readonly List<string> gnomeNickname = new List<string>()
         {
             {"Aleslosh" },
             {"Ashhearth" },
@@ -511,7 +512,7 @@ namespace DnDCharacterCreator
         };
 
         //Halforc Names
-        private readonly List<string> halforcMale = new List<string>()
+        private static readonly List<string> halforcMale = new List<string>()
         {
             {"Dench" },
             {"Feng" },
@@ -526,7 +527,7 @@ namespace DnDCharacterCreator
             {"Shump" },
             {"Thokk" }
         };
-        private readonly List<string> halforcFemale = new List<string>()
+        private static readonly List<string> halforcFemale = new List<string>()
         {
             {"Baggi" },
             {"Emen" },
@@ -544,7 +545,7 @@ namespace DnDCharacterCreator
         };
 
         //Tiefling Names
-        private readonly List<string> tieflingMale = new List<string>()
+        private static readonly List<string> tieflingMale = new List<string>()
         {
             {"Akmenos" },
             {"Amnon" },
@@ -561,7 +562,7 @@ namespace DnDCharacterCreator
             {"Skamos" },
             {"Therai" }
         };
-        private readonly List<string> tieflingFemale = new List<string>()
+        private static readonly List<string> tieflingFemale = new List<string>()
         {
             {"Akta" },
             {"Anakis" },
@@ -577,7 +578,7 @@ namespace DnDCharacterCreator
             {"Phelaia" },
             {"Rieta" }
         };
-        private readonly List<string> tieflingVirtue = new List<string>()
+        private static readonly List<string> tieflingVirtue = new List<string>()
         {
             {"Art" },
             {"Carrion" },
@@ -602,156 +603,106 @@ namespace DnDCharacterCreator
             {"Weary" }
         };
 
-        public string DwarfReturn()
+        public static string Generate(Character character)
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
+            return Generate(character.Race);
+        }
+        public static string Generate(Options.Race race)
+        {
+            switch (race)
             {
-                firstName = dwarfMale[lib.RandomRoll(dwarfMale.Count())];
+                case Options.Race.None:
+                    return Human();
+                case Options.Race.Dragonborn:
+                    return Dragonborn();
+                case Options.Race.Dwarf:
+                    return Dwarf();
+                case Options.Race.Elf:
+                    return Elf();
+                case Options.Race.Gnome:
+                    return Gnome();
+                case Options.Race.HalfElf:
+                    return Halfelf();
+                case Options.Race.Halfling:
+                    return Halfling();
+                case Options.Race.HalfOrc:
+                    return Halforc();
+                case Options.Race.Human:
+                    return Human();
+                case Options.Race.Tiefling:
+                    return Tiefling();
+                default:
+                    return Human();
             }
-            else
-            {
-                firstName = dwarfFemale[lib.RandomRoll(dwarfFemale.Count())];
-            }
-            string clanName = dwarfClan[lib.RandomRoll(dwarfClan.Count())];
-            string returnName = String.Format("{0} {1}", firstName, clanName);
-            return returnName;
         }
 
-        public string ElfReturn()
+
+        private static string Dwarf()
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
-            {
-                firstName = elfMale[lib.RandomRoll(elfMale.Count())];
-            }
-            else
-            {
-                firstName = elfFemale[lib.RandomRoll(elfFemale.Count())];
-            }
-            string familyName = elfFamily[lib.RandomRoll(elfFamily.Count())];
-            string returnName = String.Format("{0} {1}", firstName, familyName);
-            return returnName;
+            int genderRoll = RNG.Roll(2);
+            string firstName = genderRoll == 1 ? RNG.ReturnRandom(dwarfMale) : RNG.ReturnRandom(dwarfFemale);
+            string clanName = RNG.ReturnRandom(dwarfClan);
+            return String.Format("{0} {1}", firstName, clanName);
         }
 
-        public string HalflingfReturn()
+        private static string Elf()
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
-            {
-                firstName = halflingMale[lib.RandomRoll(halflingMale.Count())];
-            }
-            else
-            {
-                firstName = halflingFemale[lib.RandomRoll(halflingFemale.Count())];
-            }
-            string familyName = halflingFamily[lib.RandomRoll(halflingFamily.Count())];
-            string returnName = String.Format("{0} {1}", firstName, familyName);
-            return returnName;
+            int genderRoll = RNG.Roll(2);
+            string firstName = genderRoll == 1 ? RNG.ReturnRandom(elfMale) : RNG.ReturnRandom(elfFemale);
+            string familyName = RNG.ReturnRandom(elfFamily);
+            return String.Format("{0} {1}", firstName, familyName);
         }
 
-        public string HumanReturn()
+        private static string Halfling()
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
-            {
-                firstName = humanMale[lib.RandomRoll(humanMale.Count())];
-            }
-            else
-            {
-                firstName = humanFemale[lib.RandomRoll(humanFemale.Count())];
-            }
-            string familyName = humanFamily[lib.RandomRoll(humanFamily.Count())];
-            string returnName = String.Format("{0} {1}", firstName, familyName);
-            return returnName;
+            int genderRoll = RNG.Roll(2);
+            string firstName = genderRoll == 1 ? RNG.ReturnRandom(halflingMale) : RNG.ReturnRandom(halflingFemale);
+            string familyName = RNG.ReturnRandom(halflingFamily);
+            return String.Format("{0} {1}", firstName, familyName);
         }
 
-        public string DragonbornReturn()
+        private static string Human()
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
-            {
-                firstName = dragonbornMale[lib.RandomRoll(dragonbornMale.Count())];
-            }
-            else
-            {
-                firstName = dragonbornFemale[lib.RandomRoll(dragonbornFemale.Count())];
-            }
-            string familyName = dragonbornClan[lib.RandomRoll(dragonbornClan.Count())];
-            string returnName = String.Format("{0} {1}", firstName, familyName);
-            return returnName;
+            int genderRoll = RNG.Roll(2);
+            string firstName = genderRoll == 1 ? RNG.ReturnRandom(humanMale) : RNG.ReturnRandom(humanFemale);
+            string familyName = RNG.ReturnRandom(humanFamily);
+            return String.Format("{0} {1}", firstName, familyName);
         }
 
-        public string GnomeReturn()
+        private static string Dragonborn()
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
-            {
-                firstName = gnomeMale[lib.RandomRoll(gnomeMale.Count())];
-            }
-            else
-            {
-                firstName = gnomeFemale[lib.RandomRoll(gnomeFemale.Count())];
-            }
-            string nickName = gnomeNickname[lib.RandomRoll(gnomeNickname.Count())];
-            string familyName = gnomeClan[lib.RandomRoll(gnomeClan.Count())];
-            string returnName = String.Format("{0} \"{1}\" {2}", firstName, nickName, familyName);
-            return returnName;
+            int genderRoll = RNG.Roll(2);
+            string firstName = genderRoll == 1 ? RNG.ReturnRandom(dragonbornMale) : RNG.ReturnRandom(dragonbornFemale);
+            string familyName = RNG.ReturnRandom(dragonbornClan);
+            return String.Format("{0} {1}", firstName, familyName);
         }
 
-        public string HalfelfReturn()
+        private static string Gnome()
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
-            {
-                firstName = humanMale[lib.RandomRoll(humanMale.Count())];
-            }
-            else
-            {
-                firstName = humanFemale[lib.RandomRoll(humanFemale.Count())];
-            }
-            string familyName = humanFamily[lib.RandomRoll(humanFamily.Count())];
-            string returnName = String.Format("{0} {1}", firstName, familyName);
-            return returnName;
+            int genderRoll = RNG.Roll(2);
+            string firstName = genderRoll == 1 ? RNG.ReturnRandom(gnomeMale) : RNG.ReturnRandom(gnomeFemale);
+            string nickName = RNG.ReturnRandom(gnomeNickname);
+            string familyName = RNG.ReturnRandom(gnomeClan);
+            return String.Format("{0} \"{1}\" {2}", firstName, nickName, familyName);
         }
 
-        public string HalforcReturn()
+        private static string Halfelf()
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
-            {
-                firstName = halforcMale[lib.RandomRoll(halforcMale.Count())];
-            }
-            else
-            {
-                firstName = halforcFemale[lib.RandomRoll(halforcFemale.Count())];
-            }
-            return firstName;
+            return Human(); // Half Elfs use same conventions as Humans
         }
 
-        public string TieflingReturn()
+        private static string Halforc()
         {
-            int genderRoll = lib.RandomRoll(0, 2);
-            string firstName;
-            if (genderRoll == 1)
-            {
-                firstName = tieflingMale[lib.RandomRoll(tieflingMale.Count())];
-            }
-            else
-            {
-                firstName = tieflingFemale[lib.RandomRoll(tieflingFemale.Count())];
-            }
-            string familyName = tieflingVirtue[lib.RandomRoll(tieflingVirtue.Count())];
-            string returnName = String.Format("{0} {1}", firstName, familyName);
-            return returnName;
+            int genderRoll = RNG.Roll(2);
+            return genderRoll == 1 ? RNG.ReturnRandom(halforcMale) : RNG.ReturnRandom(halforcFemale);
+        }
+
+        private static string Tiefling()
+        {
+            int genderRoll = RNG.Roll(2);
+            string firstName = genderRoll == 1 ? RNG.ReturnRandom(tieflingMale) : RNG.ReturnRandom(tieflingFemale);
+            string familyName = RNG.ReturnRandom(tieflingVirtue);
+            return String.Format("{0} {1}", firstName, familyName);
         }
     }
 }
