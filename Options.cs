@@ -80,7 +80,7 @@ namespace DnDCharacterCreator.Options
         Heavy,
         Shield
     }
-    public enum Ability
+    public enum Stat
     {
         Strength,
         Dexterity,
@@ -139,6 +139,24 @@ namespace DnDCharacterCreator.Options
         Forest,
         Rock
     }
+    public enum DwarfSubrace
+    {
+        Hill,
+        Mountain
+    }
+    public enum DragonbornSubrace
+    {
+        Black,
+        Blue,
+        Brass,
+        Bronze,
+        Copper,
+        Gold,
+        Green,
+        Red,
+        Silver,
+        White
+    }
     public enum StandardLanguage
     {
         Common,
@@ -196,5 +214,24 @@ namespace DnDCharacterCreator.Options
         TinkerTools,
         WeaverTools,
         WoodcarverTools
+    }
+    public enum Ability
+    {
+        DarkVision,
+        FeyAncentry,
+        Trance,
+        MaskOfTheWild,
+        SunlightSensitivity,
+        DrowMagic,
+        Lucky,
+        Brave,
+        HalflingNimbleness,
+        NaturallyStealthy,
+        StoutResilience,
+        BreathWeapon,
+        GnomeCunning,
+        SpeakWithSmallBeasts,
+        ArtificersLore,
+        Tinker
     }
 }

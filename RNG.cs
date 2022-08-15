@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using DnDCharacterCreator.Models;
 
 namespace DnDCharacterCreator
 {
@@ -25,5 +26,6 @@ namespace DnDCharacterCreator
             var item = Enum.GetValues(typeof(T));
             return (T)item.GetValue(random.Next(item.Length));
         }
+
     }
 }
