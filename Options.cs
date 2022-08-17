@@ -4,6 +4,7 @@ using System.Text;
 
 namespace DnDCharacterCreator.Options
 {
+
     public enum Race
     {
         None,
@@ -232,6 +233,10 @@ namespace DnDCharacterCreator.Options
         GnomeCunning,
         SpeakWithSmallBeasts,
         ArtificersLore,
-        Tinker
+        Tinker,
+        RelentlessEndurance,
+        SavageAttacks,
+        Rage,
+        UnarmoredDefense
     }
 }

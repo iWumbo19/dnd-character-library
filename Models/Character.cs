@@ -30,6 +30,7 @@ namespace DnDCharacterCreator.Models
         
 
         public string Name { get; private set; }
+        public int HitDie { get; set; }
 
         
 
@@ -56,102 +57,271 @@ namespace DnDCharacterCreator.Models
         public bool HasAbility(Ability ability) => Abilities[(int)ability];
 
 
-        public void AddResistance(DamageType type) => Resistances[(int)type] = true;
-        public void AddProficiency(ArtisanTool tool) => ToolProficiency[(int)tool] = true;
-        public void AddProficiency(Instrument instrument) => InstrumentProficiency[(int)instrument] = true;
-        public void AddProficiency(StandardLanguage standard) => StandardLanguages[(int)standard] = true;
-        public void AddProficiency(ExoticLanguage exotic) => ExoticLanguages[(int)exotic] = true;
-        public void AddProficiency(Weapon weapon) => ToolProficiency[(int)weapon] = true;
-        public void AddProficiency(Armor armor) => ArmorProficiency[(int)armor] = true;
-        public void AddProficiency(Stat stat)
+        public bool AddResistance(DamageType type)
+        {
+            if (!IsResistant(type))
+            {
+                Resistances[(int)type] = true;
+                return true;
+            }
+            return false;
+        }
+        public bool AddProficiency(ArtisanTool tool)
+        {
+            if (!IsProficient(tool))
+            {
+                ToolProficiency[(int)tool] = true;
+                return true;
+            }
+            return false;
+        }
+        public bool AddProficiency(Instrument instrument)
+        {
+            if (!IsProficient(instrument))
+            {
+                InstrumentProficiency[(int)instrument] = true;
+                return true;
+            }
+            return false;
+        }
+        public bool AddProficiency(StandardLanguage standard)
+        {
+            if (!IsProficient(standard))
+            {
+                StandardLanguages[(int)standard] = true;
+                return true;
+            }
+            return false;
+        }
+        public bool AddProficiency(ExoticLanguage exotic)
+        {
+            if (!IsProficient(exotic))
+            {
+                ExoticLanguages[(int)exotic] = true;
+                return true;
+            }
+            return false;
+        }
+        public bool AddProficiency(Weapon weapon)
+        {
+            if (!IsProficient(weapon))
+            {
+                ToolProficiency[(int)weapon] = true;
+                return true;
+            }
+            return false;
+        }
+        public bool AddProficiency(List<Weapon> weapons)
+        {
+            foreach (Weapon weapon in weapons)
+            {
+                AddProficiency(weapon);
+            }
+            return true;
+        }
+        public bool AddProficiency(Armor armor)
+        {
+            if (!IsProficient(armor))
+            {
+                ArmorProficiency[(int)armor] = true;
+                return true;
+            }
+            return false;
+        }
+        public bool AddProficiency(Stat stat)
         {
             switch (stat)
             {
                 case Stat.Strength:
-                    Stats.StrengthSaveProf = true;
-                    break;
+                    if (!Stats.StrengthSaveProf)
+                    {
+                        Stats.StrengthSaveProf = true;
+                        return true;
+                    }
+                    return false;
                 case Stat.Dexterity:
-                    Stats.DexteritySaveProf = true;
-                    break;
+                    if (!Stats.DexteritySaveProf)
+                    {
+                        Stats.DexteritySaveProf = true;
+                        return true;
+                    }
+                    return false;
                 case Stat.Constitution:
-                    Stats.ConstitutionSaveProf = true;
-                    break;
+                    if (!Stats.ConstitutionSaveProf)
+                    {
+                        Stats.ConstitutionSaveProf = true;
+                        return true;
+                    }
+                    return false;
                 case Stat.Intelligence:
-                    Stats.IntelligenceSaveProf = true;
-                    break;
+                    if (!Stats.IntelligenceSaveProf)
+                    {
+                        Stats.IntelligenceSaveProf = true;
+                        return true;
+                    }
+                    return false;
                 case Stat.Wisdom:
-                    Stats.WisdomSaveProf = true;
-                    break;
+                    if (!Stats.WisdomSaveProf)
+                    {
+                        Stats.WisdomSaveProf = true;
+                        return true;
+                    }
+                    return false;
                 case Stat.Charisma:
-                    Stats.CharismaSaveProf = true;
-                    break;
+                    if (!Stats.CharismaSaveProf)
+                    {
+                        Stats.CharismaSaveProf = true;
+                        return true;
+                    }
+                    return false;
                 default:
                     throw new Exception("Failed to add save proficiency");
             }
         }
-        public void AddProficiency(Skill skill)
+        public bool AddProficiency(Skill skill)
         {
             switch (skill)
             {
                 case Skill.Athletics:
-                    Stats.AthleticsProf = true;
-                    break;
+                    if (!Stats.AthleticsProf)
+                    {
+                        Stats.AthleticsProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Acrobatics:
-                    Stats.AcrobaticsProf = true;
-                    break;
+                    if (!Stats.AcrobaticsProf)
+                    {
+                        Stats.AcrobaticsProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.SleightOfHand:
-                    Stats.SleightOfHandProf = true;
-                    break;
+                    if (!Stats.SleightOfHandProf)
+                    {
+                        Stats.SleightOfHandProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Stealth:
-                    Stats.StealthProf = true;
-                    break;
+                    if (!Stats.StealthProf)
+                    {
+                        Stats.StealthProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Arcana:
-                    Stats.ArcanaProf = true;
-                    break;
+                    if (!Stats.ArcanaProf)
+                    {
+                        Stats.ArcanaProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.History:
-                    Stats.HistoryProf = true;
-                    break;
+                    if (!Stats.HistoryProf)
+                    {
+                        Stats.HistoryProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Investigation:
-                    Stats.InvestigationProf = true;
-                    break;
+                    if (!Stats.InvestigationProf)
+                    {
+                        Stats.InvestigationProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Nature:
-                    Stats.NatureProf = true;
-                    break;
+                    if (!Stats.NatureProf)
+                    {
+                        Stats.NatureProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Religion:
-                    Stats.ReligionProf = true;
-                    break;
+                    if (!Stats.ReligionProf)
+                    {
+                        Stats.ReligionProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.AnimalHandling:
-                    Stats.AnimalHandlingProf = true;
-                    break;
+                    if (!Stats.AnimalHandlingProf)
+                    {
+                        Stats.AnimalHandlingProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Insight:
-                    Stats.InsightProf = true;
-                    break;
+                    if (!Stats.InsightProf)
+                    {
+                        Stats.InsightProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Medicine:
-                    Stats.MedicineProf = true;
-                    break;
+                    if (!Stats.MedicineProf)
+                    {
+                        Stats.MedicineProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Perception:
-                    Stats.PerceptionProf = true;
-                    break;
+                    if (!Stats.PerceptionProf)
+                    {
+                        Stats.PerceptionProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Survival:
-                    Stats.SurvivalProf = true;
-                    break;
+                    if (!Stats.SurvivalProf)
+                    {
+                        Stats.SurvivalProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Deception:
-                    Stats.DeceptionProf = true;
-                    break;
+                    if (!Stats.DeceptionProf)
+                    {
+                        Stats.DeceptionProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Intimidation:
-                    Stats.IntimidationProf = true;
-                    break;
+                    if (!Stats.IntimidationProf)
+                    {
+                        Stats.IntimidationProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Performance:
-                    Stats.PerformanceProf = true;
-                    break;
+                    if (!Stats.PerformanceProf)
+                    {
+                        Stats.PerformanceProf = true;
+                        return true;
+                    }
+                    return false;
                 case Skill.Persuasion:
-                    Stats.PersuasionProf = true;
-                    break;
+                    if (!Stats.PersuasionProf)
+                    {
+                        Stats.PersuasionProf = true;
+                        return true;
+                    }
+                    return false;
                 default:
                     throw new Exception("Failed to make proficient in skill");
             }
         }
-        public void AddAbility(Ability ability) => Abilities[(int)ability] = true;
+        public bool AddAbility(Ability ability)
+        {
+            if (!HasAbility(ability))
+            {
+                Abilities[(int)ability] = true;
+                return true;
+            }
+            return false;
+        }
+        
 
         internal bool AddRandomProf(ArtisanTool tool)
         {
@@ -225,5 +395,6 @@ namespace DnDCharacterCreator.Models
             ArmorProficiency[index] = true;
             return true;
         }
+        
     }
 }

@@ -7,11 +7,12 @@ using System.Text;
 
 namespace DnDCharacterCreator
 {
-    internal class CharacterBuilder
+    internal class CharacterEditor
     {
         public IRace Race;
+        public IClass Class;
 
-        public CharacterBuilder(Character character)
+        public CharacterEditor(Character character)
         {
             switch (character.Race)
             {
@@ -46,6 +47,49 @@ namespace DnDCharacterCreator
                     break;
                 default:
                     throw new Exception("Not a valid race for inputted character");
+            }
+            switch (character.Class)
+            {
+                case Options.Class.None:
+                    break;
+                case Options.Class.Barbarian:
+                    Class = new Barbarian();
+                    break;
+                case Options.Class.Bard:
+                    Class = new Bard();
+                    break;
+                case Options.Class.Cleric:
+                    Class = new Cleric();
+                    break;
+                case Options.Class.Druid:
+                    Class = new Druid();
+                    break;
+                case Options.Class.Fighter:
+                    Class = new Fighter();
+                    break;
+                case Options.Class.Monk:
+                    Class = new Monk();
+                    break;
+                case Options.Class.Paladin:
+                    Class = new Paladin();
+                    break;
+                case Options.Class.Ranger:
+                    Class = new Ranger();
+                    break;
+                case Options.Class.Rouge:
+                    Class = new Rouge();
+                    break;
+                case Options.Class.Sorcerer:
+                    Class = new Sorcerer();
+                    break;
+                case Options.Class.Warlock:
+                    Class = new Warlock();
+                    break;
+                case Options.Class.Wizard:
+                    Class = new Wizard();
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -271,12 +315,14 @@ namespace DnDCharacterCreator
                 character.AddAbility(Ability.FeyAncentry);
                 Stat profOne = RNG.ReturnRandom<Stat>();
                 Stat profTwo = RNG.ReturnRandom<Stat>();
-                while (profOne == profTwo) profTwo = RNG.ReturnRandom<Stat>();
+                while (profOne == profTwo) 
+                    profTwo = RNG.ReturnRandom<Stat>();
                 character.AddProficiency(profOne);
                 character.AddProficiency(profTwo);
                 Skill skillOne = RNG.ReturnRandom<Skill>();
                 Skill skillTwo = RNG.ReturnRandom<Skill>();
-                while (skillOne == skillTwo) skillTwo = RNG.ReturnRandom<Skill>();
+                while (skillOne == skillTwo) 
+                    skillTwo = RNG.ReturnRandom<Skill>();
                 character.AddProficiency(skillOne);
                 character.AddProficiency(skillTwo);
                 character.AddProficiency(RNG.ReturnRandom<StandardLanguage>());
@@ -287,13 +333,137 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                throw new NotImplementedException();
+                character.Stats.Strength += 2;
+                character.Stats.Constiution++;
+                character.Speed = 30;
+                character.AddAbility(Ability.DarkVision);
+                character.Stats.IntimidationProf = true;
+                character.AddAbility(Ability.RelentlessEndurance);
+                character.AddAbility(Ability.SavageAttacks);
+                character.AddProficiency(StandardLanguage.Common);
+                character.AddProficiency(StandardLanguage.Orc);
             }
         }
 
         class Tiefling : IRace
         {
             public void Build(Character character)
+            {
+                character.Stats.Intelligence++;
+                character.Stats.Charisma += 2;
+                character.Speed = 30;
+                character.AddAbility(Ability.DarkVision);
+                character.AddResistance(DamageType.Fire);
+                // ADD THAUMATURGY
+                character.AddProficiency(StandardLanguage.Common);
+                character.AddProficiency(ExoticLanguage.Infernal);
+            }
+        }
+
+        class Barbarian : IClass
+        {
+            private readonly List<Skill> barbSkillOptions = new List<Skill>()
+            {
+                Skill.AnimalHandling,
+                Skill.Athletics,
+                Skill.Intimidation,
+                Skill.Nature,
+                Skill.Perception,
+                Skill.Survival
+            };
+            public void LevelOne(Character character)
+            {
+                character.HitDie = 12;
+                character.MaxHealth = character.HitDie + character.Stats.ConstitutionMod;
+                character.AddProficiency(Armor.Light);
+                character.AddProficiency(Armor.Medium);
+                character.AddProficiency(Armor.Shield);
+                character.AddProficiency(Utilities.AllWeapons);
+                character.Stats.StrengthSaveProf = true;
+                character.Stats.ConstitutionSaveProf = true;
+                Skill skillOne = RNG.ReturnRandom(barbSkillOptions);
+                while (character.AddProficiency(skillOne))
+                    skillOne = RNG.ReturnRandom(barbSkillOptions);
+                Skill skillTwo = RNG.ReturnRandom(barbSkillOptions);
+                while (character.AddProficiency(skillTwo))
+                    skillTwo = RNG.ReturnRandom(barbSkillOptions);
+                character.AddAbility(Ability.Rage);
+                character.AddAbility(Ability.UnarmoredDefense);
+            }
+        }
+        class Bard : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Cleric : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Druid : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Fighter : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Monk : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Paladin : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Ranger : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Rouge : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Sorcerer : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Warlock : IClass
+        {
+            public void LevelOne(Character character)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        class Wizard : IClass
+        {
+            public void LevelOne(Character character)
             {
                 throw new NotImplementedException();
             }
