@@ -399,7 +399,7 @@ namespace DnDCharacterCreator
         {
             public void LevelOne(Character character)
             {
-                AssignStats(character);)
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Bard];
                 character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
