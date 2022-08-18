@@ -111,19 +111,24 @@ namespace DnDCharacterCreator.Options
         Performance,
         Persuasion
     }
-    public enum Instrument
+    public enum DamageType
     {
-        Bagpipes,
-        Drum,
-        Dulcimer,
-        Flute,
-        Lute,
-        Lyre,
-        Horn,
-        PanFlute,
-        Shawm,
-        Viol
+        Slashing,
+        Bludgeoning,
+        Piercing,
+        Poison,
+        Acid,
+        Fire,
+        Cold,
+        Radiant,
+        Necrotic,
+        Lightning,
+        Thunder,
+        Force,
+        Psychic
     }
+
+
     public enum HalflingSubrace
     {
         Lightfoot,
@@ -158,6 +163,20 @@ namespace DnDCharacterCreator.Options
         Silver,
         White
     }
+
+
+    public enum ClericSubclass
+    {
+        Knowledge,
+        Life,
+        Light,
+        Nature,
+        Tempest,
+        Trickery,
+        War
+    }
+
+
     public enum StandardLanguage
     {
         Common,
@@ -167,7 +186,9 @@ namespace DnDCharacterCreator.Options
         Gnomish,
         Gobline,
         Halfing,
-        Orc
+        Orc,
+        Druidic,
+        ThievesCant
     }
     public enum ExoticLanguage
     {
@@ -180,21 +201,18 @@ namespace DnDCharacterCreator.Options
         Sylvan,
         Undercommon
     }
-    public enum DamageType
+    public enum Instrument
     {
-        Slashing,
-        Bludgeoning,
-        Piercing,
-        Poison,
-        Acid,
-        Fire,
-        Cold,
-        Radiant,
-        Necrotic,
-        Lightning,
-        Thunder,
-        Force,
-        Psychic
+        Bagpipes,
+        Drum,
+        Dulcimer,
+        Flute,
+        Lute,
+        Lyre,
+        Horn,
+        PanFlute,
+        Shawm,
+        Viol
     }
     public enum ArtisanTool
     {
@@ -214,7 +232,9 @@ namespace DnDCharacterCreator.Options
         SmithTools,
         TinkerTools,
         WeaverTools,
-        WoodcarverTools
+        WoodcarverTools,
+        ThievesTools,
+        HerbalismKit
     }
     public enum Ability
     {
@@ -237,6 +257,23 @@ namespace DnDCharacterCreator.Options
         RelentlessEndurance,
         SavageAttacks,
         Rage,
-        UnarmoredDefense
+        UnarmoredDefense,
+        BardicInspiration,
+        DiscipleOfLife,
+        WardingFlare,
+        WrathOfTheStorm,
+        BlessingOfTheTrickster,
+        WarPriest,
+        WildShape,
+        MartialArts,
+        DivineSense,
+        LayOnHands,
+        FavoredEnemy,
+        NaturalExplorer,
+        Expertise,
+        SneakAttack,
+        OtherWorldlyPatron,
+        PactMagic,
+        ArcaneRecovery
     }
 }
