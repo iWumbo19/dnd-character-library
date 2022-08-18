@@ -9,6 +9,9 @@ namespace DnDCharacterCreator.Models
     {
         public Character()
         {
+            Stats = new int[6];
+            StatSaveProf = new bool[6];
+            SkillProficincy = new bool[Utilities.GetEnumLength<Skill>()];
             Resistances = new bool[Utilities.GetEnumLength<DamageType>()];
             ToolProficiency = new bool[Utilities.GetEnumLength<ArtisanTool>()];
             InstrumentProficiency = new bool[Utilities.GetEnumLength<Instrument>()];
@@ -21,7 +24,9 @@ namespace DnDCharacterCreator.Models
             Name = Names.Generate(this);
             Backstories bs = new Backstories(this);
             Background = bs.Generate();
-            MaxHealth = Tables.classHitDie[Class] + Stats.ConstitutionMod;
+            CharacterEditor ce = new CharacterEditor(this);
+            ce.Race.Build(this);
+            ce.Class.LevelOne(this);
         }
         public Race Race { get; private set; }
         public dynamic SubRace { get; internal set; }
@@ -55,32 +60,32 @@ namespace DnDCharacterCreator.Models
         public int StrengthMod
         {
             get { return Tables.ScoreMod[Stats[(int)Stat.Strength]]; }
-            set { }
+            private set { }
         }
         public int DexterityMod
         {
             get { return Tables.ScoreMod[Stats[(int)Stat.Dexterity]]; }
-            set { }
+            private set { }
         }
         public int ConstitutionMod
         {
             get { return Tables.ScoreMod[Stats[(int)Stat.Constitution]]; }
-            set { }
+            private set { }
         }
         public int IntelligenceMod
         {
             get { return Tables.ScoreMod[Stats[(int)Stat.Intelligence]]; }
-            set { }
+            private set { }
         }
         public int WisdomMod
         {
             get { return Tables.ScoreMod[Stats[(int)Stat.Wisdom]]; }
-            set { }
+            private set { }
         }
         public int CharismaMod
         {
             get { return Tables.ScoreMod[Stats[(int)Stat.Charisma]]; }
-            set { }
+            private set { }
         }
 
         public int Athletics
@@ -259,56 +264,7 @@ namespace DnDCharacterCreator.Models
             }
             return false;
         }
-        public bool AddProficiency(Stat stat)
-        {
-            switch (stat)
-            {
-                case Stat.Strength:
-                    if (!Stats.StrengthSaveProf)
-                    {
-                        Stats.StrengthSaveProf = true;
-                        return true;
-                    }
-                    return false;
-                case Stat.Dexterity:
-                    if (!Stats.DexteritySaveProf)
-                    {
-                        Stats.DexteritySaveProf = true;
-                        return true;
-                    }
-                    return false;
-                case Stat.Constitution:
-                    if (!Stats.ConstitutionSaveProf)
-                    {
-                        Stats.ConstitutionSaveProf = true;
-                        return true;
-                    }
-                    return false;
-                case Stat.Intelligence:
-                    if (!Stats.IntelligenceSaveProf)
-                    {
-                        Stats.IntelligenceSaveProf = true;
-                        return true;
-                    }
-                    return false;
-                case Stat.Wisdom:
-                    if (!Stats.WisdomSaveProf)
-                    {
-                        Stats.WisdomSaveProf = true;
-                        return true;
-                    }
-                    return false;
-                case Stat.Charisma:
-                    if (!Stats.CharismaSaveProf)
-                    {
-                        Stats.CharismaSaveProf = true;
-                        return true;
-                    }
-                    return false;
-                default:
-                    throw new Exception("Failed to add save proficiency");
-            }
-        }
+        public bool AddProficiency(Stat stat) => StatSaveProf[(int)stat] = true;
         public bool AddProficiency(Skill skill)
         {
             if (!IsProficient(skill))
