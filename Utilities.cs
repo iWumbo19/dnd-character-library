@@ -7,7 +7,6 @@ namespace DnDCharacterCreator
 {
     internal static class Utilities
     {
-        public static int GetEnumLength<T>() => Enum.GetNames(typeof(T)).Length;
         public static readonly List<Weapon> SimpleMeleeWeapons = new List<Weapon>()
         {
             Weapon.Club,
@@ -131,5 +130,19 @@ namespace DnDCharacterCreator
             Weapon.Longbow,
             Weapon.Net
         };
+
+        public static int GetEnumLength<T>() => Enum.GetNames(typeof(T)).Length;
+
+        public static int[] GetRandomStats()
+        {
+            List<int> output = new List<int>();
+            for (int i = 0; i < 7; i++)
+                output.Add(RNG.Roll(6) + RNG.Roll(6) + RNG.Roll(6));
+            output.Sort();
+            output.RemoveAt(0);
+            output.Reverse();
+            return output.ToArray();
+
+        }
     }
 }
