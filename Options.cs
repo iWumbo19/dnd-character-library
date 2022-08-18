@@ -7,7 +7,6 @@ namespace DnDCharacterCreator.Options
 
     public enum Race
     {
-        None,
         Dragonborn,
         Dwarf,
         Elf,
@@ -21,7 +20,6 @@ namespace DnDCharacterCreator.Options
     }
     public enum Class
     {
-        None,
         Barbarian,
         Bard,
         Cleric,

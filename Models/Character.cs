@@ -14,11 +14,12 @@ namespace DnDCharacterCreator.Models
             SkillProficincy = new bool[Utilities.GetEnumLength<Skill>()];
             Resistances = new bool[Utilities.GetEnumLength<DamageType>()];
             ToolProficiency = new bool[Utilities.GetEnumLength<ArtisanTool>()];
+            ArmorProficiency = new bool[Utilities.GetEnumLength<Armor>()];
+            WeaponProficiency = new bool[Utilities.GetEnumLength<Weapon>()];
             InstrumentProficiency = new bool[Utilities.GetEnumLength<Instrument>()];
             StandardLanguages = new bool[Utilities.GetEnumLength<StandardLanguage>()];
             ExoticLanguages = new bool[Utilities.GetEnumLength<ExoticLanguage>()];
-            WeaponProficiency = new bool[Utilities.GetEnumLength<Weapon>()];
-            ArmorProficiency = new bool[Utilities.GetEnumLength<Armor>()];
+            Abilities = new bool[Utilities.GetEnumLength<Ability>()];
             Race = RNG.ReturnRandom<Race>();
             Class = RNG.ReturnRandom<Class>();
             Name = Names.Generate(this);
@@ -242,7 +243,7 @@ namespace DnDCharacterCreator.Models
         {
             if (!IsProficient(weapon))
             {
-                ToolProficiency[(int)weapon] = true;
+                WeaponProficiency[(int)weapon] = true;
                 return true;
             }
             return false;

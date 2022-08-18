@@ -612,8 +612,6 @@ namespace DnDCharacterCreator
         {
             switch (race)
             {
-                case Options.Race.None:
-                    return Human();
                 case Options.Race.Dragonborn:
                     return Dragonborn();
                 case Options.Race.Dwarf:

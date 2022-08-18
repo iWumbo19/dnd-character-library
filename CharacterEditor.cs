@@ -16,8 +16,6 @@ namespace DnDCharacterCreator
         {
             switch (character.Race)
             {
-                case Options.Race.None:
-                    throw new Exception("No Race found for inputted character");
                 case Options.Race.Dragonborn:
                     Race = new Dragonborn();
                     break;
@@ -50,8 +48,6 @@ namespace DnDCharacterCreator
             }
             switch (character.Class)
             {
-                case Options.Class.None:
-                    break;
                 case Options.Class.Barbarian:
                     Class = new Barbarian();
                     break;
@@ -861,6 +857,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Wizard];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Weapon.Dagger);
