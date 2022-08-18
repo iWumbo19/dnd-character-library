@@ -26,16 +26,21 @@ namespace DnDCharacterCreator.Models
         public Race Race { get; private set; }
         public dynamic SubRace { get; internal set; }
         public Class Class { get; private set; }
-
-        
-
+        public dynamic SubClass { get; internal set; }
         public string Name { get; private set; }
         public int HitDie { get; set; }
+        public int Level { get; set; }
+        public int Proficiency
+        {
+            get { return Tables.LevelProf[Level]; }
+            protected set { }
+        }
 
-        
 
         public string Background { get;  private set; }
-        public Stats Stats { get; internal set; }
+        public int[] Stats { get; internal set; }
+        internal bool[] StatSaveProf { get; set; }
+        internal bool[] SkillProficincy { get; set; }
         internal bool[] Resistances { get; set; }
         internal bool[] ToolProficiency { get; set; }
         internal bool[] ArmorProficiency { get; set; }
@@ -47,6 +52,130 @@ namespace DnDCharacterCreator.Models
         public int MaxHealth { get; set; }
         public int Speed { get; set; }
 
+        public int StrengthMod
+        {
+            get { return Tables.ScoreMod[Stats[(int)Stat.Strength]]; }
+            set { }
+        }
+        public int DexterityMod
+        {
+            get { return Tables.ScoreMod[Stats[(int)Stat.Dexterity]]; }
+            set { }
+        }
+        public int ConstitutionMod
+        {
+            get { return Tables.ScoreMod[Stats[(int)Stat.Constitution]]; }
+            set { }
+        }
+        public int IntelligenceMod
+        {
+            get { return Tables.ScoreMod[Stats[(int)Stat.Intelligence]]; }
+            set { }
+        }
+        public int WisdomMod
+        {
+            get { return Tables.ScoreMod[Stats[(int)Stat.Wisdom]]; }
+            set { }
+        }
+        public int CharismaMod
+        {
+            get { return Tables.ScoreMod[Stats[(int)Stat.Charisma]]; }
+            set { }
+        }
+
+        public int Athletics
+        {
+            get { return ToModifier(Stats[(int)Stat.Strength], SkillProficincy[(int)Skill.Athletics]); }
+            set { }
+        }
+        public int Acrobatics
+        {
+            get { return ToModifier(Stats[(int)Stat.Dexterity], SkillProficincy[(int)Skill.Acrobatics]); }
+            set { }
+        }
+        public int SleightOfHand
+        {
+            get { return ToModifier(Stats[(int)Stat.Dexterity], SkillProficincy[(int)Skill.SleightOfHand]); }
+            set { }
+        }
+        public int Stealth
+        {
+            get { return ToModifier(Stats[(int)Stat.Dexterity], SkillProficincy[(int)Skill.Stealth]); }
+            set { }
+        }
+        public int Arcana
+        {
+            get { return ToModifier(Stats[(int)Stat.Intelligence], SkillProficincy[(int)Skill.Arcana]); }
+            set { }
+        }
+        public int History
+        {
+            get { return ToModifier(Stats[(int)Stat.Intelligence], SkillProficincy[(int)Skill.History]); }
+            set { }
+        }
+        public int Investigation
+        {
+            get { return ToModifier(Stats[(int)Stat.Intelligence], SkillProficincy[(int)Skill.Investigation]); }
+            set { }
+        }
+        public int Nature
+        {
+            get { return ToModifier(Stats[(int)Stat.Intelligence], SkillProficincy[(int)Skill.Nature]); }
+            set { }
+        }
+        public int Religion
+        {
+            get { return ToModifier(Stats[(int)Stat.Intelligence], SkillProficincy[(int)Skill.Religion]); }
+            set { }
+        }
+        public int AnimalHandling
+        {
+            get { return ToModifier(Stats[(int)Stat.Wisdom], SkillProficincy[(int)Skill.AnimalHandling]); }
+            set { }
+        }
+        public int Insight
+        {
+            get { return ToModifier(Stats[(int)Stat.Wisdom], SkillProficincy[(int)Skill.Insight]); }
+            set { }
+        }
+        public int Medicine
+        {
+            get { return ToModifier(Stats[(int)Stat.Wisdom], SkillProficincy[(int)Skill.Medicine]); }
+            set { }
+        }
+        public int Perception
+        {
+            get { return ToModifier(Stats[(int)Stat.Wisdom], SkillProficincy[(int)Skill.Perception]); }
+            set { }
+        }
+        public int Survival
+        {
+            get { return ToModifier(Stats[(int)Stat.Wisdom], SkillProficincy[(int)Skill.Survival]); }
+            set { }
+        }
+        public int Deception
+        {
+            get { return ToModifier(Stats[(int)Stat.Charisma], SkillProficincy[(int)Skill.Deception]); }
+            set { }
+        }
+        public int Intimidation
+        {
+            get { return ToModifier(Stats[(int)Stat.Charisma], SkillProficincy[(int)Skill.Intimidation]); }
+            set { }
+        }
+        public int Performance
+        {
+            get { return ToModifier(Stats[(int)Stat.Charisma], SkillProficincy[(int)Skill.Performance]); }
+            set { }
+        }
+        public int Persuasion
+        {
+            get { return ToModifier(Stats[(int)Stat.Charisma], SkillProficincy[(int)Skill.Persuasion]); }
+            set { }
+        }
+
+        private int ToModifier(int rawScore, bool prof) => prof ? Tables.ScoreMod[rawScore] + Proficiency : Tables.ScoreMod[rawScore];
+
         public bool IsResistant(DamageType type) => Resistances[(int)type];
         public bool IsProficient(ArtisanTool tool) => ToolProficiency[(int)tool];
         public bool IsProficient(Instrument instrument) => InstrumentProficiency[(int)instrument];
@@ -54,6 +183,8 @@ namespace DnDCharacterCreator.Models
         public bool IsProficient(ExoticLanguage exotic) => ExoticLanguages[(int)exotic];
         public bool IsProficient(Weapon weapon) => WeaponProficiency[(int)weapon];
         public bool IsProficient(Armor armor) => ArmorProficiency[(int)armor];
+        public bool IsProficient(Skill skill) => SkillProficincy[(int)skill];
+        public bool IsProficient(Stat stat) => StatSaveProf[(int)stat];
         public bool HasAbility(Ability ability) => Abilities[(int)ability];
 
 
@@ -180,137 +311,12 @@ namespace DnDCharacterCreator.Models
         }
         public bool AddProficiency(Skill skill)
         {
-            switch (skill)
+            if (!IsProficient(skill))
             {
-                case Skill.Athletics:
-                    if (!Stats.AthleticsProf)
-                    {
-                        Stats.AthleticsProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Acrobatics:
-                    if (!Stats.AcrobaticsProf)
-                    {
-                        Stats.AcrobaticsProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.SleightOfHand:
-                    if (!Stats.SleightOfHandProf)
-                    {
-                        Stats.SleightOfHandProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Stealth:
-                    if (!Stats.StealthProf)
-                    {
-                        Stats.StealthProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Arcana:
-                    if (!Stats.ArcanaProf)
-                    {
-                        Stats.ArcanaProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.History:
-                    if (!Stats.HistoryProf)
-                    {
-                        Stats.HistoryProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Investigation:
-                    if (!Stats.InvestigationProf)
-                    {
-                        Stats.InvestigationProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Nature:
-                    if (!Stats.NatureProf)
-                    {
-                        Stats.NatureProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Religion:
-                    if (!Stats.ReligionProf)
-                    {
-                        Stats.ReligionProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.AnimalHandling:
-                    if (!Stats.AnimalHandlingProf)
-                    {
-                        Stats.AnimalHandlingProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Insight:
-                    if (!Stats.InsightProf)
-                    {
-                        Stats.InsightProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Medicine:
-                    if (!Stats.MedicineProf)
-                    {
-                        Stats.MedicineProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Perception:
-                    if (!Stats.PerceptionProf)
-                    {
-                        Stats.PerceptionProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Survival:
-                    if (!Stats.SurvivalProf)
-                    {
-                        Stats.SurvivalProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Deception:
-                    if (!Stats.DeceptionProf)
-                    {
-                        Stats.DeceptionProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Intimidation:
-                    if (!Stats.IntimidationProf)
-                    {
-                        Stats.IntimidationProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Performance:
-                    if (!Stats.PerformanceProf)
-                    {
-                        Stats.PerformanceProf = true;
-                        return true;
-                    }
-                    return false;
-                case Skill.Persuasion:
-                    if (!Stats.PersuasionProf)
-                    {
-                        Stats.PersuasionProf = true;
-                        return true;
-                    }
-                    return false;
-                default:
-                    throw new Exception("Failed to make proficient in skill");
+                SkillProficincy[(int)skill] = true;
+                return true;
             }
+            return false;
         }
         public bool AddAbility(Ability ability)
         {
@@ -321,6 +327,7 @@ namespace DnDCharacterCreator.Models
             }
             return false;
         }
+        public void IncreaseStat(Stat stat, int amount) => Stats[(int)stat] += amount;
         
 
         internal bool AddRandomProf(ArtisanTool tool)
@@ -345,6 +352,30 @@ namespace DnDCharacterCreator.Models
             }
             if (tries >= 50) return false;
             InstrumentProficiency[index] = true;
+            return true;
+        }
+        internal bool AddRandomProf(Skill skill)
+        {
+            int tries = 0;
+            int index = RNG.Roll(0, Utilities.GetEnumLength<Skill>());
+            while (SkillProficincy[index] && tries++ < 50)
+            {
+                index = RNG.Roll(0, Utilities.GetEnumLength<Skill>());
+            }
+            if (tries >= 50) return false;
+            SkillProficincy[index] = true;
+            return true;
+        }
+        internal bool AddRandomProf(List<Skill> list)
+        {
+            int tries = 0;
+            Skill skill = RNG.ReturnRandom(list);
+            while (!IsProficient(skill) && tries++ < 50)
+            {
+                skill = RNG.ReturnRandom(list);
+            }
+            if (tries > 50) return false;
+            AddProficiency(skill);
             return true;
         }
         internal bool AddRandomProf(StandardLanguage language)
