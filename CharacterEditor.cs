@@ -93,6 +93,7 @@ namespace DnDCharacterCreator
             }
         }
 
+        #region RACES
         class Dwarf : IRace
         {
             List<ArtisanTool> dwarfToolOptions = new List<ArtisanTool>()
@@ -130,7 +131,6 @@ namespace DnDCharacterCreator
                 }
             }
         }
-
         class Elf : IRace
         {
             public void Build(Character character)
@@ -179,7 +179,6 @@ namespace DnDCharacterCreator
                 }
             }
         }
-
         class Halfling : IRace
         {
             public void Build(Character character)
@@ -207,7 +206,6 @@ namespace DnDCharacterCreator
                 }
             }
         }
-
         class Human : IRace
         {
             public void Build(Character character)
@@ -227,7 +225,6 @@ namespace DnDCharacterCreator
                     character.AddProficiency(RNG.ReturnRandom<ExoticLanguage>());
             }
         }
-
         class Dragonborn : IRace
         {
             public void Build(Character character)
@@ -276,7 +273,6 @@ namespace DnDCharacterCreator
                 }
             }
         }
-
         class Gnome : IRace
         {
             public void Build(Character character)
@@ -306,7 +302,6 @@ namespace DnDCharacterCreator
                 }
             }
         }
-
         class HalfElf : IRace
         {
             public void Build(Character character)
@@ -330,7 +325,6 @@ namespace DnDCharacterCreator
                 character.AddProficiency(RNG.ReturnRandom<StandardLanguage>());
             }
         }
-
         class HalfOrc : IRace
         {
             public void Build(Character character)
@@ -346,7 +340,6 @@ namespace DnDCharacterCreator
                 character.AddProficiency(StandardLanguage.Orc);
             }
         }
-
         class Tiefling : IRace
         {
             public void Build(Character character)
@@ -361,7 +354,9 @@ namespace DnDCharacterCreator
                 character.AddProficiency(ExoticLanguage.Infernal);
             }
         }
+        #endregion
 
+        #region CLASSES
         class Barbarian : IClass
         {
             private readonly List<Skill> barbSkillOptions = new List<Skill>()
@@ -375,6 +370,7 @@ namespace DnDCharacterCreator
             };
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = 12;
                 character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
@@ -383,20 +379,27 @@ namespace DnDCharacterCreator
                 character.AddProficiency(Utilities.AllWeapons);
                 character.AddProficiency(Stat.Dexterity);
                 character.AddProficiency(Stat.Constitution);
-                Skill skillOne = RNG.ReturnRandom(barbSkillOptions);
-                while (character.AddProficiency(skillOne))
-                    skillOne = RNG.ReturnRandom(barbSkillOptions);
-                Skill skillTwo = RNG.ReturnRandom(barbSkillOptions);
-                while (character.AddProficiency(skillTwo))
-                    skillTwo = RNG.ReturnRandom(barbSkillOptions);
+                character.AddRandomProf(barbSkillOptions);
+                character.AddRandomProf(barbSkillOptions);
                 character.AddAbility(Ability.Rage);
                 character.AddAbility(Ability.UnarmoredDefense);
+            }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[0];
+                character.Stats[(int)Stat.Dexterity] = stats[2];
+                character.Stats[(int)Stat.Constitution] = stats[1];
+                character.Stats[(int)Stat.Intelligence] = stats[5];
+                character.Stats[(int)Stat.Wisdom] = stats[3];
+                character.Stats[(int)Stat.Charisma] = stats[4];
             }
         }
         class Bard : IClass
         {
             public void LevelOne(Character character)
             {
+                AssignStats(character);)
                 character.HitDie = Tables.classHitDie[Options.Class.Bard];
                 character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
@@ -416,6 +419,16 @@ namespace DnDCharacterCreator
                 character.AddRandomProf(Skill.Arcana);
                 // ADD 2 CANTRIPS
                 character.AddAbility(Ability.BardicInspiration);
+            }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[5];
+                character.Stats[(int)Stat.Dexterity] = stats[1];
+                character.Stats[(int)Stat.Constitution] = stats[2];
+                character.Stats[(int)Stat.Intelligence] = stats[3];
+                character.Stats[(int)Stat.Wisdom] = stats[4];
+                character.Stats[(int)Stat.Charisma] = stats[0];
             }
         }
         class Cleric : IClass
@@ -444,6 +457,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Cleric];
                 character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
@@ -497,6 +511,16 @@ namespace DnDCharacterCreator
                 }
 
             }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[1];
+                character.Stats[(int)Stat.Dexterity] = stats[4];
+                character.Stats[(int)Stat.Constitution] = stats[2];
+                character.Stats[(int)Stat.Intelligence] = stats[0];
+                character.Stats[(int)Stat.Wisdom] = stats[3];
+                character.Stats[(int)Stat.Charisma] = stats[5];
+            }
         }
         class Druid : IClass
         {
@@ -514,6 +538,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Druid];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
@@ -538,6 +563,16 @@ namespace DnDCharacterCreator
                 // ADD TWO RANDOM SPELLS   
                 character.AddAbility(Ability.WildShape);
             }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[5];
+                character.Stats[(int)Stat.Dexterity] = stats[1];
+                character.Stats[(int)Stat.Constitution] = stats[2];
+                character.Stats[(int)Stat.Intelligence] = stats[4];
+                character.Stats[(int)Stat.Wisdom] = stats[0];
+                character.Stats[(int)Stat.Charisma] = stats[3];
+            }
         }
         class Fighter : IClass
         {
@@ -555,6 +590,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Fighter];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Armor.Heavy);
@@ -566,11 +602,22 @@ namespace DnDCharacterCreator
                 character.AddRandomProf(fighterSkillOptions);
                 character.AddRandomProf(fighterSkillOptions);
             }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[0];
+                character.Stats[(int)Stat.Dexterity] = stats[2];
+                character.Stats[(int)Stat.Constitution] = stats[1];
+                character.Stats[(int)Stat.Intelligence] = stats[3];
+                character.Stats[(int)Stat.Wisdom] = stats[5];
+                character.Stats[(int)Stat.Charisma] = stats[4];
+            }
         }
         class Monk : IClass
         {
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Monk];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Utilities.SimpleWeapons);
@@ -580,6 +627,16 @@ namespace DnDCharacterCreator
                 character.AddProficiency(Stat.Dexterity);
                 character.AddAbility(Ability.UnarmoredDefense);
                 character.AddAbility(Ability.MartialArts);
+            }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[3];
+                character.Stats[(int)Stat.Dexterity] = stats[0];
+                character.Stats[(int)Stat.Constitution] = stats[1];
+                character.Stats[(int)Stat.Intelligence] = stats[2];
+                character.Stats[(int)Stat.Wisdom] = stats[5];
+                character.Stats[(int)Stat.Charisma] = stats[4];
             }
         }
         class Paladin : IClass
@@ -596,6 +653,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Paladin];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
@@ -609,6 +667,16 @@ namespace DnDCharacterCreator
                 character.AddRandomProf(paladinSkillOptions);
                 character.AddAbility(Ability.DivineSense);
                 character.AddAbility(Ability.LayOnHands);
+            }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[0];
+                character.Stats[(int)Stat.Dexterity] = stats[3];
+                character.Stats[(int)Stat.Constitution] = stats[1];
+                character.Stats[(int)Stat.Intelligence] = stats[4];
+                character.Stats[(int)Stat.Wisdom] = stats[5];
+                character.Stats[(int)Stat.Charisma] = stats[2];
             }
         }
         class Ranger : IClass
@@ -627,6 +695,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Ranger];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
@@ -638,6 +707,16 @@ namespace DnDCharacterCreator
                 character.AddRandomProf(rangerSkillOptions);
                 character.AddAbility(Ability.FavoredEnemy);
                 character.AddAbility(Ability.NaturalExplorer);
+            }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[5];
+                character.Stats[(int)Stat.Dexterity] = stats[0];
+                character.Stats[(int)Stat.Constitution] = stats[2];
+                character.Stats[(int)Stat.Intelligence] = stats[3];
+                character.Stats[(int)Stat.Wisdom] = stats[1];
+                character.Stats[(int)Stat.Charisma] = stats[4];
             }
         }
         class Rouge : IClass
@@ -659,6 +738,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Rouge];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
@@ -678,6 +758,16 @@ namespace DnDCharacterCreator
                 character.AddAbility(Ability.SneakAttack);
                 character.AddProficiency(StandardLanguage.ThievesCant);
             }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[5];
+                character.Stats[(int)Stat.Dexterity] = stats[0];
+                character.Stats[(int)Stat.Constitution] = stats[1];
+                character.Stats[(int)Stat.Intelligence] = stats[3];
+                character.Stats[(int)Stat.Wisdom] = stats[4];
+                character.Stats[(int)Stat.Charisma] = stats[2];
+            }
         }
         class Sorcerer : IClass
         {
@@ -693,6 +783,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Sorcerer];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Weapon.Dagger);
@@ -705,6 +796,16 @@ namespace DnDCharacterCreator
                 character.AddRandomProf(sorcererSkillOptions);
                 character.AddRandomProf(sorcererSkillOptions);
                 // ADD FOUR RANDOM CANTRIPS 
+            }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[5];
+                character.Stats[(int)Stat.Dexterity] = stats[1];
+                character.Stats[(int)Stat.Constitution] = stats[2];
+                character.Stats[(int)Stat.Intelligence] = stats[3];
+                character.Stats[(int)Stat.Wisdom] = stats[4];
+                character.Stats[(int)Stat.Charisma] = stats[0];
             }
         }
         class Warlock : IClass
@@ -722,6 +823,7 @@ namespace DnDCharacterCreator
 
             public void LevelOne(Character character)
             {
+                AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Warlock];
                 character.MaxHealth = character.HitDie = character.ConstitutionMod;
                 character.AddProficiency(Utilities.SimpleWeapons);
@@ -733,6 +835,17 @@ namespace DnDCharacterCreator
                 character.AddAbility(Ability.PactMagic);
                 // ADD 2 RANDOM SPELLS
             }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[5];
+                character.Stats[(int)Stat.Dexterity] = stats[1];
+                character.Stats[(int)Stat.Constitution] = stats[2];
+                character.Stats[(int)Stat.Intelligence] = stats[3];
+                character.Stats[(int)Stat.Wisdom] = stats[4];
+                character.Stats[(int)Stat.Charisma] = stats[0];
+            }
+
         }
         class Wizard : IClass
         {
@@ -760,6 +873,17 @@ namespace DnDCharacterCreator
                 character.AddRandomProf(wizardSkillOptions);
                 character.AddAbility(Ability.ArcaneRecovery);
             }
+            public void AssignStats(Character character)
+            {
+                int[] stats = Utilities.GetRandomStats();
+                character.Stats[(int)Stat.Strength] = stats[5];
+                character.Stats[(int)Stat.Dexterity] = stats[1];
+                character.Stats[(int)Stat.Constitution] = stats[2];
+                character.Stats[(int)Stat.Intelligence] = stats[0];
+                character.Stats[(int)Stat.Wisdom] = stats[3];
+                character.Stats[(int)Stat.Charisma] = stats[4];
+            }
         }
+        #endregion
     }
 }
