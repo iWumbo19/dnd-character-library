@@ -103,7 +103,7 @@ namespace DnDCharacterCreator
             };
             public void Build(Character character)
             {
-                character.Stats.Constiution++;
+                character.IncreaseStat(Stat.Constitution, 1);
                 character.Speed = 25;
                 character.AddAbility(Ability.DarkVision);
                 character.AddResistance(DamageType.Poison);
@@ -118,10 +118,10 @@ namespace DnDCharacterCreator
                 switch (character.SubRace)
                 {
                     case (DwarfSubrace.Hill):
-                        character.Stats.Wisdom++;
+                        character.IncreaseStat(Stat.Wisdom, 1);
                         break;
                     case (DwarfSubrace.Mountain):
-                        character.Stats.Strength++;
+                        character.IncreaseStat(Stat.Strength, 1);
                         character.AddProficiency(Armor.Light);
                         character.AddProficiency(Armor.Medium);
                         break;
@@ -135,10 +135,10 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                character.Stats.Dexterity++;
+                character.IncreaseStat(Stat.Dexterity, 1);
                 character.Speed = 30;
                 character.AddAbility(Ability.DarkVision);
-                character.Stats.PerceptionProf = true;
+                character.AddProficiency(Skill.Perception);
                 character.AddAbility(Ability.FeyAncentry);
                 character.AddAbility(Ability.Trance);
                 character.AddProficiency(StandardLanguage.Common);
@@ -155,7 +155,7 @@ namespace DnDCharacterCreator
                         character.AddAbility(Ability.MaskOfTheWild);
                         break;
                     case (ElfSubrace.Dark):
-                        character.Stats.Charisma++;
+                        character.IncreaseStat(Stat.Charisma, 1);
                         character.AddAbility(Ability.SunlightSensitivity);
                         character.AddAbility(Ability.DrowMagic);
                         character.AddProficiency(Weapon.Rapier);
@@ -163,7 +163,7 @@ namespace DnDCharacterCreator
                         character.AddProficiency(Weapon.Crossbow);
                         break;
                     case (ElfSubrace.High):
-                        character.Stats.Intelligence++;
+                        character.IncreaseStat(Stat.Intelligence, 1);
                         character.AddProficiency(Weapon.Longsword); ;
                         character.AddProficiency(Weapon.Shortsword);
                         character.AddProficiency(Weapon.Shortbow);
@@ -184,7 +184,7 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                character.Stats.Dexterity++;
+                character.IncreaseStat(Stat.Dexterity, 1);
                 character.Speed = 25;
                 character.AddAbility(Ability.Lucky);
                 character.AddAbility(Ability.Brave);
@@ -195,11 +195,11 @@ namespace DnDCharacterCreator
                 switch (character.SubRace)
                 {
                     case (HalflingSubrace.Lightfoot):
-                        character.Stats.Charisma++;
+                        character.IncreaseStat(Stat.Charisma, 1);
                         character.AddAbility(Ability.NaturallyStealthy);
                         break;
                     case (HalflingSubrace.Stout):
-                        character.Stats.Constiution++;
+                        character.IncreaseStat(Stat.Constitution, 1);
                         character.AddAbility(Ability.StoutResilience);
                         break;
                     default:
@@ -212,17 +212,19 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                character.Stats.Strength++;
-                character.Stats.Dexterity++;
-                character.Stats.Constiution++;
-                character.Stats.Intelligence++;
-                character.Stats.Wisdom++;
-                character.Stats.Charisma++;
+                character.IncreaseStat(Stat.Strength, 1);
+                character.IncreaseStat(Stat.Dexterity, 1);
+                character.IncreaseStat(Stat.Constitution, 1);
+                character.IncreaseStat(Stat.Intelligence, 1);
+                character.IncreaseStat(Stat.Wisdom, 1);
+                character.IncreaseStat(Stat.Charisma, 1);
                 character.Speed = 30;
                 character.AddProficiency(StandardLanguage.Common);
                 int langRoll = RNG.Roll(2);
-                if (langRoll == 1) character.AddProficiency(RNG.ReturnRandom<StandardLanguage>());
-                else character.AddProficiency(RNG.ReturnRandom<ExoticLanguage>());
+                if (langRoll == 1) 
+                    character.AddProficiency(RNG.ReturnRandom<StandardLanguage>());
+                else 
+                    character.AddProficiency(RNG.ReturnRandom<ExoticLanguage>());
             }
         }
 
@@ -230,8 +232,8 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                character.Stats.Strength++;
-                character.Stats.Charisma++;
+                character.IncreaseStat(Stat.Strength, 1);
+                character.IncreaseStat(Stat.Charisma, 1);
                 character.Speed = 30;
                 character.AddProficiency(StandardLanguage.Common);
                 character.AddProficiency(ExoticLanguage.Draconic);
@@ -279,7 +281,7 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                character.Stats.Intelligence += 2;
+                character.IncreaseStat(Stat.Intelligence, 2);
                 character.Speed = 30;
                 character.AddAbility(Ability.DarkVision);
                 character.AddAbility(Ability.GnomeCunning);
@@ -289,12 +291,12 @@ namespace DnDCharacterCreator
                 switch (character.SubRace)
                 {
                     case (GnomeSubrace.Forest):
-                        character.Stats.Dexterity++;
+                        character.IncreaseStat(Stat.Dexterity, 1);
                         // ADD SPELL MINOR ILLUSION/
                         character.AddAbility(Ability.SpeakWithSmallBeasts);
                         break;
                     case (GnomeSubrace.Rock):
-                        character.Stats.Constiution++;
+                        character.IncreaseStat(Stat.Constitution, 2);
                         character.AddAbility(Ability.ArtificersLore);
                         character.AddAbility(Ability.Tinker);
                         character.AddProficiency(ArtisanTool.TinkerTools);
@@ -309,7 +311,7 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                character.Stats.Charisma += 2;
+                character.IncreaseStat(Stat.Charisma, 2);
                 character.Speed = 30;
                 character.AddAbility(Ability.DarkVision);
                 character.AddAbility(Ability.FeyAncentry);
@@ -333,11 +335,11 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                character.Stats.Strength += 2;
-                character.Stats.Constiution++;
+                character.IncreaseStat(Stat.Strength, 2);
+                character.IncreaseStat(Stat.Strength, 1);
                 character.Speed = 30;
                 character.AddAbility(Ability.DarkVision);
-                character.Stats.IntimidationProf = true;
+                character.AddProficiency(Skill.Intimidation);
                 character.AddAbility(Ability.RelentlessEndurance);
                 character.AddAbility(Ability.SavageAttacks);
                 character.AddProficiency(StandardLanguage.Common);
@@ -349,8 +351,8 @@ namespace DnDCharacterCreator
         {
             public void Build(Character character)
             {
-                character.Stats.Intelligence++;
-                character.Stats.Charisma += 2;
+                character.IncreaseStat(Stat.Intelligence, 1);
+                character.IncreaseStat(Stat.Charisma, 2);
                 character.Speed = 30;
                 character.AddAbility(Ability.DarkVision);
                 character.AddResistance(DamageType.Fire);
@@ -374,13 +376,13 @@ namespace DnDCharacterCreator
             public void LevelOne(Character character)
             {
                 character.HitDie = 12;
-                character.MaxHealth = character.HitDie + character.Stats.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
                 character.AddProficiency(Armor.Medium);
                 character.AddProficiency(Armor.Shield);
                 character.AddProficiency(Utilities.AllWeapons);
-                character.Stats.StrengthSaveProf = true;
-                character.Stats.ConstitutionSaveProf = true;
+                character.AddProficiency(Stat.Dexterity);
+                character.AddProficiency(Stat.Constitution);
                 Skill skillOne = RNG.ReturnRandom(barbSkillOptions);
                 while (character.AddProficiency(skillOne))
                     skillOne = RNG.ReturnRandom(barbSkillOptions);
@@ -395,77 +397,368 @@ namespace DnDCharacterCreator
         {
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Bard];
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
+                character.AddProficiency(Armor.Light);
+                character.AddProficiency(Utilities.SimpleWeapons);
+                character.AddProficiency(Weapon.Crossbow);
+                character.AddProficiency(Weapon.Longsword);
+                character.AddProficiency(Weapon.Rapier);
+                character.AddProficiency(Weapon.Shortsword);
+                character.AddProficiency(RNG.ReturnRandom<Instrument>());
+                character.AddRandomProf(Instrument.Lute);
+                character.AddRandomProf(Instrument.Lute);
+                character.AddRandomProf(Instrument.Lute);
+                character.AddProficiency(Stat.Dexterity);
+                character.AddProficiency(Stat.Charisma);
+                character.AddRandomProf(Skill.Arcana);
+                character.AddRandomProf(Skill.Arcana);
+                character.AddRandomProf(Skill.Arcana);
+                // ADD 2 CANTRIPS
+                character.AddAbility(Ability.BardicInspiration);
             }
         }
         class Cleric : IClass
         {
+            private readonly List<Skill> clericSkillOptions = new List<Skill>()
+            { 
+                Skill.History,
+                Skill.Insight,
+                Skill.Medicine,
+                Skill.Persuasion,
+                Skill.Religion
+            };
+            private readonly List<Skill> knowledgeClericSkills = new List<Skill>()
+            {
+                Skill.Arcana,
+                Skill.History,
+                Skill.Nature,
+                Skill.Religion
+            };
+            private readonly List<Skill> natureClericSkills = new List<Skill>()
+            {
+                Skill.AnimalHandling,
+                Skill.Nature,
+                Skill.Survival
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Cleric];
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
+                character.AddProficiency(Armor.Light);
+                character.AddProficiency(Armor.Medium);
+                character.AddProficiency(Armor.Shield);
+                character.AddProficiency(Stat.Wisdom);
+                character.AddProficiency(Stat.Charisma);
+                character.AddRandomProf(clericSkillOptions);
+                character.AddRandomProf(clericSkillOptions);
+                // ADD 3 CANTRIPS   
+                character.SubClass = RNG.ReturnRandom<ClericSubclass>();
+                switch (character.SubClass)
+                {
+                    case ClericSubclass.Knowledge:
+                        // ADD COMMAND AND IDENTIFY
+                        character.AddRandomProf(knowledgeClericSkills);
+                        character.AddRandomProf(knowledgeClericSkills);
+                        break;
+                    case ClericSubclass.Life:
+                        // ADD BLESS AND CURE WOUNDS
+                        character.AddAbility(Ability.DiscipleOfLife);
+                        character.AddProficiency(Armor.Heavy);
+                        break;
+                    case ClericSubclass.Light:
+                        // ADD BURNING HANDS, FAERIE FIRE, LIGHT
+                        character.AddAbility(Ability.WardingFlare);
+                        break;
+                    case ClericSubclass.Nature:
+                        // ADD ANIMAL FRIENDSHIP, SPEAK WITH ANIMALS
+                        character.AddProficiency(Armor.Heavy);
+                        character.AddRandomProf(natureClericSkills);
+                        break;
+                    case ClericSubclass.Tempest:
+                        // ADD FOG CLOUD, THUNDERWAVE
+                        character.AddProficiency(Utilities.MartialWeapons);
+                        character.AddProficiency(Armor.Heavy);
+                        character.AddAbility(Ability.WrathOfTheStorm);
+                        break;
+                    case ClericSubclass.Trickery:
+                        // ADD CHARM PERSON, DISGUISE SELF
+                        character.AddAbility(Ability.BlessingOfTheTrickster);
+                        break;
+                    case ClericSubclass.War:
+                        // ADD DIVINE FAVOR, SHIELD OF FAITH
+                        character.AddProficiency(Utilities.MartialWeapons);
+                        character.AddProficiency(Armor.Heavy);
+                        character.AddAbility(Ability.WarPriest);
+                        break;
+                    default:
+                        throw new Exception("Not subrace found for cleric");
+                }
+
             }
         }
         class Druid : IClass
         {
+            private readonly List<Skill> druidSkillOptions = new List<Skill>()
+            {
+                Skill.Arcana,
+                Skill.AnimalHandling,
+                Skill.Insight,
+                Skill.Medicine,
+                Skill.Nature,
+                Skill.Perception,
+                Skill.Religion,
+                Skill.Survival
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Druid];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Armor.Light);
+                character.AddProficiency(Armor.Medium);
+                character.AddProficiency(Armor.Shield);
+                character.AddProficiency(Weapon.Club);
+                character.AddProficiency(Weapon.Dagger);
+                character.AddProficiency(Weapon.Dart);
+                character.AddProficiency(Weapon.Javelin);
+                character.AddProficiency(Weapon.Mace);
+                character.AddProficiency(Weapon.Quarterstaff);
+                character.AddProficiency(Weapon.Scimitar);
+                character.AddProficiency(Weapon.Sickle);
+                character.AddProficiency(Weapon.Sling);
+                character.AddProficiency(Weapon.Spear);
+                character.AddProficiency(ArtisanTool.HerbalismKit);
+                character.AddProficiency(Stat.Intelligence);
+                character.AddProficiency(Stat.Wisdom);
+                character.AddRandomProf(druidSkillOptions);
+                character.AddRandomProf(druidSkillOptions);
+                character.AddProficiency(StandardLanguage.Druidic);
+                // ADD TWO RANDOM SPELLS   
+                character.AddAbility(Ability.WildShape);
             }
         }
         class Fighter : IClass
         {
+            private readonly List<Skill> fighterSkillOptions = new List<Skill>()
+            {
+                Skill.Acrobatics,
+                Skill.AnimalHandling,
+                Skill.Athletics,
+                Skill.History,
+                Skill.Insight,
+                Skill.Intimidation,
+                Skill.Perception,
+                Skill.Survival
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Fighter];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Armor.Heavy);
+                character.AddProficiency(Armor.Medium);
+                character.AddProficiency(Armor.Light);
+                character.AddProficiency(Armor.Shield);
+                character.AddProficiency(Stat.Strength);
+                character.AddProficiency(Stat.Constitution);
+                character.AddRandomProf(fighterSkillOptions);
+                character.AddRandomProf(fighterSkillOptions);
             }
         }
         class Monk : IClass
         {
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Monk];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Utilities.SimpleWeapons);
+                character.AddProficiency(Weapon.Shortsword);
+                character.AddRandomProf(ArtisanTool.AlchemistSupplies);
+                character.AddProficiency(Stat.Strength);
+                character.AddProficiency(Stat.Dexterity);
+                character.AddAbility(Ability.UnarmoredDefense);
+                character.AddAbility(Ability.MartialArts);
             }
         }
         class Paladin : IClass
         {
+            private readonly List<Skill> paladinSkillOptions = new List<Skill>()
+            {
+                Skill.Athletics,
+                Skill.Insight,
+                Skill.Intimidation,
+                Skill.Medicine,
+                Skill.Persuasion,
+                Skill.Religion
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Paladin];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Armor.Light);
+                character.AddProficiency(Armor.Medium);
+                character.AddProficiency(Armor.Heavy);
+                character.AddProficiency(Armor.Shield);
+                character.AddProficiency(Utilities.AllWeapons);
+                character.AddProficiency(Stat.Wisdom);
+                character.AddProficiency(Stat.Charisma);
+                character.AddRandomProf(paladinSkillOptions);
+                character.AddRandomProf(paladinSkillOptions);
+                character.AddAbility(Ability.DivineSense);
+                character.AddAbility(Ability.LayOnHands);
             }
         }
         class Ranger : IClass
         {
+            private readonly List<Skill> rangerSkillOptions = new List<Skill>()
+            {
+                Skill.AnimalHandling,
+                Skill.Athletics,
+                Skill.Insight,
+                Skill.Investigation,
+                Skill.Nature,
+                Skill.Perception,
+                Skill.Stealth,
+                Skill.Survival
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Ranger];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Armor.Light);
+                character.AddProficiency(Armor.Medium);
+                character.AddProficiency(Armor.Shield);
+                character.AddProficiency(Utilities.AllWeapons);
+                character.AddRandomProf(rangerSkillOptions);
+                character.AddRandomProf(rangerSkillOptions);
+                character.AddRandomProf(rangerSkillOptions);
+                character.AddAbility(Ability.FavoredEnemy);
+                character.AddAbility(Ability.NaturalExplorer);
             }
         }
         class Rouge : IClass
         {
+            private readonly List<Skill> rougeSkillOptions = new List<Skill>()
+            {
+                Skill.Acrobatics,
+                Skill.Athletics,
+                Skill.Deception,
+                Skill.Insight,
+                Skill.Intimidation,
+                Skill.Investigation,
+                Skill.Perception,
+                Skill.Performance,
+                Skill.Persuasion,
+                Skill.SleightOfHand,
+                Skill.Stealth
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Rouge];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Armor.Light);
+                character.AddProficiency(Utilities.SimpleWeapons);
+                character.AddProficiency(Weapon.Crossbow);
+                character.AddProficiency(Weapon.Longsword);
+                character.AddProficiency(Weapon.Rapier);
+                character.AddProficiency(Weapon.Shortsword);
+                character.AddProficiency(ArtisanTool.ThievesTools);
+                character.AddProficiency(Stat.Dexterity);
+                character.AddProficiency(Stat.Intelligence);
+                character.AddRandomProf(rougeSkillOptions);
+                character.AddRandomProf(rougeSkillOptions);
+                character.AddRandomProf(rougeSkillOptions);
+                character.AddRandomProf(rougeSkillOptions);
+                character.AddAbility(Ability.Expertise);
+                character.AddAbility(Ability.SneakAttack);
+                character.AddProficiency(StandardLanguage.ThievesCant);
             }
         }
         class Sorcerer : IClass
         {
+            private readonly List<Skill> sorcererSkillOptions = new List<Skill>()
+            {
+                Skill.Arcana,
+                Skill.Deception,
+                Skill.Insight,
+                Skill.Intimidation,
+                Skill.Persuasion,
+                Skill.Religion
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Sorcerer];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Weapon.Dagger);
+                character.AddProficiency(Weapon.Dart);
+                character.AddProficiency(Weapon.Sling);
+                character.AddProficiency(Weapon.Quarterstaff);
+                character.AddProficiency(Weapon.Crossbow);
+                character.AddProficiency(Stat.Constitution);
+                character.AddProficiency(Stat.Charisma);
+                character.AddRandomProf(sorcererSkillOptions);
+                character.AddRandomProf(sorcererSkillOptions);
+                // ADD FOUR RANDOM CANTRIPS 
             }
         }
         class Warlock : IClass
         {
+            private readonly List<Skill> warlockSkillOptions = new List<Skill>()
+            {
+                Skill.Arcana,
+                Skill.Deception,
+                Skill.History,
+                Skill.Intimidation,
+                Skill.Investigation,
+                Skill.Nature,
+                Skill.Religion
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Warlock];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Utilities.SimpleWeapons);
+                character.AddProficiency(Stat.Wisdom);
+                character.AddProficiency(Stat.Charisma);
+                character.AddRandomProf(warlockSkillOptions);
+                character.AddRandomProf(warlockSkillOptions);
+                character.AddAbility(Ability.OtherWorldlyPatron);
+                character.AddAbility(Ability.PactMagic);
+                // ADD 2 RANDOM SPELLS
             }
         }
         class Wizard : IClass
         {
+            private readonly List<Skill> wizardSkillOptions = new List<Skill>()
+            {
+                Skill.Arcana,
+                Skill.History,
+                Skill.Insight,
+                Skill.Investigation,
+                Skill.Medicine,
+                Skill.Religion
+            };
+
             public void LevelOne(Character character)
             {
-                throw new NotImplementedException();
+                character.HitDie = Tables.classHitDie[Options.Class.Wizard];
+                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.AddProficiency(Weapon.Dagger);
+                character.AddProficiency(Weapon.Dart);
+                character.AddProficiency(Weapon.Sling);
+                character.AddProficiency(Weapon.Quarterstaff);
+                character.AddProficiency(Stat.Intelligence);
+                character.AddProficiency(Stat.Wisdom);
+                character.AddRandomProf(wizardSkillOptions);
+                character.AddRandomProf(wizardSkillOptions);
+                character.AddAbility(Ability.ArcaneRecovery);
             }
         }
     }
