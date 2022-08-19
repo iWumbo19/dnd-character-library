@@ -9,6 +9,7 @@ namespace DnDCharacterCreator.Models
     {
         public Character()
         {
+            Level = 1;
             Stats = new int[6];
             StatSaveProf = new bool[6];
             SkillProficincy = new bool[Utilities.GetEnumLength<Skill>()];
@@ -87,6 +88,37 @@ namespace DnDCharacterCreator.Models
         {
             get { return Tables.ScoreMod[Stats[(int)Stat.Charisma]]; }
             private set { }
+        }
+
+        public int StrengthSave
+        {
+            get { return IsProficient(Stat.Strength) ? StrengthMod + Proficiency : StrengthMod; }
+            set { }
+        }
+        public int DexteritySave
+        {
+            get { return IsProficient(Stat.Dexterity) ? DexterityMod + Proficiency : DexterityMod; }
+            set { }
+        }
+        public int ConstitutionSave
+        {
+            get { return IsProficient(Stat.Constitution) ? ConstitutionMod + Proficiency : ConstitutionMod; }
+            set { }
+        }
+        public int WisdomSave
+        {
+            get { return IsProficient(Stat.Strength) ? WisdomMod + Proficiency : WisdomMod; }
+            set { }
+        }
+        public int IntelligenceSave
+        {
+            get { return IsProficient(Stat.Intelligence) ? IntelligenceMod + Proficiency : IntelligenceMod; }
+            set { }
+        }
+        public int CharismaSave
+        {
+            get { return IsProficient(Stat.Strength) ? CharismaMod + Proficiency : CharismaMod; }
+            set { }
         }
 
         public int Athletics
@@ -315,11 +347,12 @@ namespace DnDCharacterCreator.Models
         {
             int tries = 0;
             int index = RNG.Roll(0, Utilities.GetEnumLength<Skill>());
-            while (SkillProficincy[index] && tries++ < 50)
+            while (SkillProficincy[index] && tries < 50)
             {
                 index = RNG.Roll(0, Utilities.GetEnumLength<Skill>());
+                tries++;
             }
-            if (tries >= 50) return false;
+            if (tries >= 49) return false;
             SkillProficincy[index] = true;
             return true;
         }
@@ -327,11 +360,12 @@ namespace DnDCharacterCreator.Models
         {
             int tries = 0;
             Skill skill = RNG.ReturnRandom(list);
-            while (!IsProficient(skill) && tries++ < 50)
+            while (IsProficient(skill) && tries < 50)
             {
                 skill = RNG.ReturnRandom(list);
+                tries++;
             }
-            if (tries > 50) return false;
+            if (tries >= 49) return false;
             AddProficiency(skill);
             return true;
         }
