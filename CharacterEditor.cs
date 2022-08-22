@@ -11,6 +11,7 @@ namespace DnDCharacterCreator
     {
         public IRace Race;
         public IClass Class;
+        public 
 
         public CharacterEditor(Character character)
         {
@@ -536,7 +537,7 @@ namespace DnDCharacterCreator
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Druid];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
                 character.AddProficiency(Armor.Medium);
                 character.AddProficiency(Armor.Shield);
@@ -588,7 +589,7 @@ namespace DnDCharacterCreator
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Fighter];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Heavy);
                 character.AddProficiency(Armor.Medium);
                 character.AddProficiency(Armor.Light);
@@ -611,16 +612,28 @@ namespace DnDCharacterCreator
         }
         class Monk : IClass
         {
+            private readonly List<Skill> monkSkillOptions = new List<Skill>()
+            {
+                Skill.Acrobatics,
+                Skill.Athletics,
+                Skill.History,
+                Skill.Insight,
+                Skill.Religion,
+                Skill.Stealth
+            };
+
             public void LevelOne(Character character)
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Monk];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Utilities.SimpleWeapons);
                 character.AddProficiency(Weapon.Shortsword);
                 character.AddRandomProf(ArtisanTool.AlchemistSupplies);
                 character.AddProficiency(Stat.Strength);
                 character.AddProficiency(Stat.Dexterity);
+                character.AddRandomProf(monkSkillOptions);
+                character.AddRandomProf(monkSkillOptions);
                 character.AddAbility(Ability.UnarmoredDefense);
                 character.AddAbility(Ability.MartialArts);
             }
@@ -651,7 +664,7 @@ namespace DnDCharacterCreator
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Paladin];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
                 character.AddProficiency(Armor.Medium);
                 character.AddProficiency(Armor.Heavy);
@@ -693,7 +706,7 @@ namespace DnDCharacterCreator
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Ranger];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
                 character.AddProficiency(Armor.Medium);
                 character.AddProficiency(Armor.Shield);
@@ -736,7 +749,7 @@ namespace DnDCharacterCreator
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Rouge];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Armor.Light);
                 character.AddProficiency(Utilities.SimpleWeapons);
                 character.AddProficiency(Weapon.Crossbow);
@@ -781,7 +794,7 @@ namespace DnDCharacterCreator
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Sorcerer];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Weapon.Dagger);
                 character.AddProficiency(Weapon.Dart);
                 character.AddProficiency(Weapon.Sling);
@@ -821,7 +834,7 @@ namespace DnDCharacterCreator
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Warlock];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Utilities.SimpleWeapons);
                 character.AddProficiency(Stat.Wisdom);
                 character.AddProficiency(Stat.Charisma);
@@ -859,7 +872,7 @@ namespace DnDCharacterCreator
             {
                 AssignStats(character);
                 character.HitDie = Tables.classHitDie[Options.Class.Wizard];
-                character.MaxHealth = character.HitDie = character.ConstitutionMod;
+                character.MaxHealth = character.HitDie + character.ConstitutionMod;
                 character.AddProficiency(Weapon.Dagger);
                 character.AddProficiency(Weapon.Dart);
                 character.AddProficiency(Weapon.Sling);
