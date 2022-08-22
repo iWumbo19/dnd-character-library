@@ -1,6 +1,7 @@
 ﻿using DnDCharacterCreator.Classes;
 using DnDCharacterCreator.Interfaces;
 using DnDCharacterCreator.Options;
+using DnDCharacterCreator.Races;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,16 +24,15 @@ namespace DnDCharacterCreator.Models
             StandardLanguages = new bool[Utilities.GetEnumLength<StandardLanguage>()];
             ExoticLanguages = new bool[Utilities.GetEnumLength<ExoticLanguage>()];
             Abilities = new bool[Utilities.GetEnumLength<Ability>()];
-            Race = RNG.ReturnRandom<Race>();
-            Class = ChooseClass();
+            Race = GetRandomRace();
+            Class = GetRandomClass();
             Name = Names.Generate(this);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();
-            CharacterEditor ce = new CharacterEditor(this);
-            ce.Race.Build(this);
+            Race.Build(this);
             Class.LevelOne(this);
         }
-        public Character(IClass _class, Race race)
+        public Character(IClass _class, IRace race)
         {
             Level = 1;
             Stats = new int[6];
@@ -52,11 +52,10 @@ namespace DnDCharacterCreator.Models
             Name = Names.Generate(this);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();
-            CharacterEditor ce = new CharacterEditor(this);
-            ce.Race.Build(this);
-            ce.Class.LevelOne(this);
+            Race.Build(this);
+            Class.LevelOne(this);
         }
-        public Race Race { get; private set; }
+        public IRace Race { get; private set; }
         public dynamic SubRace { get; internal set; }
         public IClass Class { get; private set; }
         public dynamic SubClass { get; internal set; }
@@ -497,7 +496,7 @@ namespace DnDCharacterCreator.Models
         {
             return prof ? "*" : " ";
         }
-        private IClass ChooseClass()
+        private IClass GetRandomClass()
         {
             switch (RNG.ReturnRandom<Class>())
             {
@@ -527,6 +526,32 @@ namespace DnDCharacterCreator.Models
                     return new Wizard();
                 default:
                     throw new NotImplementedException();
+            }
+        }
+        private IRace GetRandomRace()
+        {
+            switch (RNG.ReturnRandom<Race>())
+            {
+                case Options.Race.Dragonborn:
+                    return new Dragonborn();
+                case Options.Race.Dwarf:
+                    return new Dwarf();
+                case Options.Race.Elf:
+                    return new Elf();
+                case Options.Race.Gnome:
+                    return new Gnome();
+                case Options.Race.HalfElf:
+                    return new HalfElf();
+                case Options.Race.Halfling:
+                    return new Halfling();
+                case Options.Race.HalfOrc:
+                    return new HalfOrc();
+                case Options.Race.Human:
+                    return new Human();
+                case Options.Race.Tiefling:
+                    return new Tiefling();
+                default:
+                    throw new Exception("Not a valid race for inputted character");
             }
         }
     }
