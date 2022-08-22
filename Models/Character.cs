@@ -25,7 +25,31 @@ namespace DnDCharacterCreator.Models
             Class = RNG.ReturnRandom<Class>();
             Name = Names.Generate(this);
             Backstories bs = new Backstories(this);
-            Background = bs.Generate();
+            Backstory = bs.Generate();
+            CharacterEditor ce = new CharacterEditor(this);
+            ce.Race.Build(this);
+            ce.Class.LevelOne(this);
+        }
+        public Character(Class _class, Race race)
+        {
+            Level = 1;
+            Stats = new int[6];
+            StatSaveProf = new bool[6];
+            SkillProficincy = new bool[Utilities.GetEnumLength<Skill>()];
+            Resistances = new bool[Utilities.GetEnumLength<DamageType>()];
+            ToolProficiency = new bool[Utilities.GetEnumLength<ArtisanTool>()];
+            ArmorProficiency = new bool[Utilities.GetEnumLength<Armor>()];
+            WeaponProficiency = new bool[Utilities.GetEnumLength<Weapon>()];
+            InstrumentProficiency = new bool[Utilities.GetEnumLength<Instrument>()];
+            StandardLanguages = new bool[Utilities.GetEnumLength<StandardLanguage>()];
+            ExoticLanguages = new bool[Utilities.GetEnumLength<ExoticLanguage>()];
+            Abilities = new bool[Utilities.GetEnumLength<Ability>()];
+            Race = race;
+            Class = _class;
+            Personality = new Personality();
+            Name = Names.Generate(this);
+            Backstories bs = new Backstories(this);
+            Backstory = bs.Generate();
             CharacterEditor ce = new CharacterEditor(this);
             ce.Race.Build(this);
             ce.Class.LevelOne(this);
@@ -35,6 +59,7 @@ namespace DnDCharacterCreator.Models
         public Class Class { get; private set; }
         public dynamic SubClass { get; internal set; }
         public string Name { get; private set; }
+        public Personality Personality { get; private set; }
         public int HitDie { get; set; }
         public int Level { get; set; }
         public int Proficiency
@@ -44,7 +69,7 @@ namespace DnDCharacterCreator.Models
         }
 
 
-        public string Background { get;  private set; }
+        public string Backstory { get;  private set; }
         public int[] Stats { get; internal set; }
         internal bool[] StatSaveProf { get; set; }
         internal bool[] SkillProficincy { get; set; }
@@ -107,7 +132,7 @@ namespace DnDCharacterCreator.Models
         }
         public int WisdomSave
         {
-            get { return IsProficient(Stat.Strength) ? WisdomMod + Proficiency : WisdomMod; }
+            get { return IsProficient(Stat.Wisdom) ? WisdomMod + Proficiency : WisdomMod; }
             set { }
         }
         public int IntelligenceSave
@@ -117,7 +142,7 @@ namespace DnDCharacterCreator.Models
         }
         public int CharismaSave
         {
-            get { return IsProficient(Stat.Strength) ? CharismaMod + Proficiency : CharismaMod; }
+            get { return IsProficient(Stat.Charisma) ? CharismaMod + Proficiency : CharismaMod; }
             set { }
         }
 
@@ -417,6 +442,58 @@ namespace DnDCharacterCreator.Models
             ArmorProficiency[index] = true;
             return true;
         }
-        
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Name: {Name}");
+            sb.AppendLine($"Race: {Race}");
+            sb.AppendLine($"Class: {Class}");
+            sb.AppendLine($"Level: {Level}");
+            sb.AppendLine($"Hit Die: {HitDie}");
+            sb.AppendLine($"Health: {MaxHealth}");
+            sb.AppendLine($"Proficiency: {Proficiency}\n");
+
+            sb.AppendLine($"STR: {Stats[(int)Stat.Strength]}");
+            sb.AppendLine($"DEX: {Stats[(int)Stat.Dexterity]}");
+            sb.AppendLine($"CON: {Stats[(int)Stat.Constitution]}");
+            sb.AppendLine($"WIS: {Stats[(int)Stat.Wisdom]}");
+            sb.AppendLine($"INT: {Stats[(int)Stat.Intelligence]}");
+            sb.AppendLine($"CHA: {Stats[(int)Stat.Charisma]}\n");
+
+            sb.AppendLine($"Saving Throws: STR({ProfStar(IsProficient(Stat.Strength))}{StrengthSave})");
+            sb.AppendLine($"Saving Throws: DEX({ProfStar(IsProficient(Stat.Dexterity))}{DexteritySave})");
+            sb.AppendLine($"Saving Throws: CON({ProfStar(IsProficient(Stat.Constitution))}{ConstitutionSave})");
+            sb.AppendLine($"Saving Throws: WIS({ProfStar(IsProficient(Stat.Wisdom))}{WisdomSave})");
+            sb.AppendLine($"Saving Throws: INT({ProfStar(IsProficient(Stat.Intelligence))}{IntelligenceSave})");
+            sb.AppendLine($"Saving Throws: CHA({ProfStar(IsProficient(Stat.Charisma))}{CharismaSave})\n");
+
+            sb.AppendLine($"Athletics({ProfStar(IsProficient(Skill.Athletics))}{Athletics})");
+            sb.AppendLine($"Acrobatics({ProfStar(IsProficient(Skill.Acrobatics))}{Acrobatics})");
+            sb.AppendLine($"Sleight Of Hand({ProfStar(IsProficient(Skill.SleightOfHand))}{SleightOfHand})");
+            sb.AppendLine($"Stealth({ProfStar(IsProficient(Skill.Stealth))}{Stealth})");
+            sb.AppendLine($"Arcana({ProfStar(IsProficient(Skill.Arcana))}{Arcana})");
+            sb.AppendLine($"History({ProfStar(IsProficient(Skill.History))}{History})");
+            sb.AppendLine($"Investigation({ProfStar(IsProficient(Skill.Investigation))}{Investigation})");
+            sb.AppendLine($"Nature({ProfStar(IsProficient(Skill.Nature))}{Nature})");
+            sb.AppendLine($"Athletics({ProfStar(IsProficient(Skill.Athletics))}{Athletics})");
+            sb.AppendLine($"Religion({ProfStar(IsProficient(Skill.Religion))}{Religion})");
+            sb.AppendLine($"Animal Handling({ProfStar(IsProficient(Skill.AnimalHandling))}{AnimalHandling})");
+            sb.AppendLine($"Insight({ProfStar(IsProficient(Skill.Insight))}{Insight})");
+            sb.AppendLine($"Medicine({ProfStar(IsProficient(Skill.Medicine))}{Medicine})");
+            sb.AppendLine($"Perception({ProfStar(IsProficient(Skill.Perception))}{Perception})");
+            sb.AppendLine($"Survival({ProfStar(IsProficient(Skill.Survival))}{Survival})");
+            sb.AppendLine($"Deception({ProfStar(IsProficient(Skill.Deception))}{Deception})");
+            sb.AppendLine($"Intimidation({ProfStar(IsProficient(Skill.Intimidation))}{Intimidation})");
+            sb.AppendLine($"Performance({ProfStar(IsProficient(Skill.Performance))}{Performance})");
+            sb.AppendLine($"Persuasion({ProfStar(IsProficient(Skill.Persuasion))}{Persuasion})");
+
+            return sb.ToString();
+        }
+
+        private string ProfStar(bool prof)
+        {
+            return prof ? "*" : " ";
+        }
     }
 }
