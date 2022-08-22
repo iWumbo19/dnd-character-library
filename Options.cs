@@ -33,6 +33,34 @@ namespace DnDCharacterCreator.Options
         Warlock,
         Wizard
     }
+    public enum Law
+    {
+        Lawful,
+        Neutral,
+        Chaotic
+    }
+    public enum Order
+    {
+        Good,
+        Neutral,
+
+    }
+    public enum Background
+    {
+        Acolyte,
+        Charlatan,
+        Criminal,
+        Entertainer,
+        FolkHero,
+        GuildArtisan,
+        Hermit,
+        Noble,
+        Outlander,
+        Sage,
+        Sailor,
+        Soldier,
+        Urchin
+    }
     public enum Weapon
     {
         Club,
