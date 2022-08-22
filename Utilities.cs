@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DnDCharacterCreator.Options;
 using System.Text;
+using System.Linq;
 
 namespace DnDCharacterCreator
 {
@@ -132,7 +133,7 @@ namespace DnDCharacterCreator
         };
 
         public static int GetEnumLength<T>() => Enum.GetNames(typeof(T)).Length;
-
+        public static List<T> GetEnumList<T>() => Enum.GetValues(typeof(T)).Cast<T>().ToList();
         public static int[] GetRandomStats()
         {
             List<int> output = new List<int>();

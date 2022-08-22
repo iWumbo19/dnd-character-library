@@ -260,7 +260,9 @@ namespace DnDCharacterCreator.Options
         WeaverTools,
         WoodcarverTools,
         ThievesTools,
-        HerbalismKit
+        HerbalismKit,
+        DisguiseKit,
+        ForgeryKit
     }
     public enum Ability
     {

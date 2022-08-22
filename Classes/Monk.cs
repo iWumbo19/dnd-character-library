@@ -24,7 +24,7 @@ namespace DnDCharacterCreator.Classes
             character.MaxHealth = character.HitDie + character.ConstitutionMod;
             character.AddProficiency(Utilities.SimpleWeapons);
             character.AddProficiency(Weapon.Shortsword);
-            character.AddRandomProf(ArtisanTool.AlchemistSupplies);
+            character.AddRandomProf(Utilities.GetEnumList<ArtisanTool>());
             character.AddProficiency(Stat.Strength);
             character.AddProficiency(Stat.Dexterity);
             character.AddRandomProf(monkSkillOptions);

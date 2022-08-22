@@ -1,5 +1,6 @@
 ﻿using DnDCharacterCreator.Interfaces;
 using DnDCharacterCreator.Models;
+using DnDCharacterCreator.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,10 @@ namespace DnDCharacterCreator.Backgrounds
             character.Personality.Bond = ChooseBond();
             character.Personality.Ideal = ChooseIdeal(character);
             character.Personality.Flaw = ChooseFlaw();
+            character.AddProficiency(Options.Skill.Insight);
+            character.AddProficiency(Options.Skill.Religion);
+            character.AddRandomProf(Utilities.GetEnumList<StandardLanguage>());
+            character.AddRandomProf(Utilities.GetEnumList<ExoticLanguage>());
         }
 
         public string ChooseBond()
@@ -112,5 +117,6 @@ namespace DnDCharacterCreator.Backgrounds
                     return "";
             }
         }
+
     }
 }

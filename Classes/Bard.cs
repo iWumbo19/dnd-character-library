@@ -18,14 +18,14 @@ namespace DnDCharacterCreator.Classes
             character.AddProficiency(Weapon.Rapier);
             character.AddProficiency(Weapon.Shortsword);
             character.AddProficiency(RNG.ReturnRandom<Instrument>());
-            character.AddRandomProf(Instrument.Lute);
-            character.AddRandomProf(Instrument.Lute);
-            character.AddRandomProf(Instrument.Lute);
+            character.AddRandomProf(Utilities.GetEnumList<Instrument>());
+            character.AddRandomProf(Utilities.GetEnumList<Instrument>());
+            character.AddRandomProf(Utilities.GetEnumList<Instrument>());
             character.AddProficiency(Stat.Dexterity);
             character.AddProficiency(Stat.Charisma);
-            character.AddRandomProf(Skill.Arcana);
-            character.AddRandomProf(Skill.Arcana);
-            character.AddRandomProf(Skill.Arcana);
+            character.AddRandomProf(Utilities.GetEnumList<Skill>());
+            character.AddRandomProf(Utilities.GetEnumList<Skill>());
+            character.AddRandomProf(Utilities.GetEnumList<Skill>());
             // ADD 2 CANTRIPS
             character.AddAbility(Ability.BardicInspiration);
         }

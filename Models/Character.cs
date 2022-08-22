@@ -345,43 +345,6 @@ namespace DnDCharacterCreator.Models
         public void IncreaseStat(Stat stat, int amount) => Stats[(int)stat] += amount;
         
 
-        internal bool AddRandomProf(ArtisanTool tool)
-        {
-            int tries = 0;
-            int index = RNG.Roll(0, Utilities.GetEnumLength<ArtisanTool>());
-            while (ToolProficiency[index] && tries++ < 50)
-            {
-                index = RNG.Roll(0, Utilities.GetEnumLength<ArtisanTool>());
-            }
-            if (tries >= 50) return false;
-            ToolProficiency[index] = true;
-            return true;
-        }
-        internal bool AddRandomProf(Instrument instrument)
-        {
-            int tries = 0;
-            int index = RNG.Roll(0, Utilities.GetEnumLength<Instrument>());
-            while (InstrumentProficiency[index] && tries++ < 50)
-            {
-                index = RNG.Roll(0, Utilities.GetEnumLength<Instrument>());
-            }
-            if (tries >= 50) return false;
-            InstrumentProficiency[index] = true;
-            return true;
-        }
-        internal bool AddRandomProf(Skill skill)
-        {
-            int tries = 0;
-            int index = RNG.Roll(0, Utilities.GetEnumLength<Skill>());
-            while (SkillProficincy[index] && tries < 50)
-            {
-                index = RNG.Roll(0, Utilities.GetEnumLength<Skill>());
-                tries++;
-            }
-            if (tries >= 49) return false;
-            SkillProficincy[index] = true;
-            return true;
-        }
         internal bool AddRandomProf(List<Skill> list)
         {
             int tries = 0;
@@ -395,52 +358,56 @@ namespace DnDCharacterCreator.Models
             AddProficiency(skill);
             return true;
         }
-        internal bool AddRandomProf(StandardLanguage language)
+        internal bool AddRandomProf(List<StandardLanguage> list)
         {
             int tries = 0;
-            int index = RNG.Roll(0, Utilities.GetEnumLength<StandardLanguage>());
-            while (StandardLanguages[index] && tries++ < 50)
+            StandardLanguage language = RNG.ReturnRandom(list);
+            while (IsProficient(language) && tries < 50)
             {
-                index = RNG.Roll(0, Utilities.GetEnumLength<StandardLanguage>());
+                language = RNG.ReturnRandom(list);
+                tries++;
             }
-            if (tries >= 50) return false;
-            StandardLanguages[index] = true;
+            if (tries >= 49) return false;
+            AddProficiency(language);
             return true;
         }
-        internal bool AddRandomProf(ExoticLanguage language)
+        internal bool AddRandomProf(List<ExoticLanguage> list)
         {
             int tries = 0;
-            int index = RNG.Roll(0, Utilities.GetEnumLength<ExoticLanguage>());
-            while (ExoticLanguages[index] && tries++ < 50)
+            ExoticLanguage language = RNG.ReturnRandom(list);
+            while (IsProficient(language) && tries < 50)
             {
-                index = RNG.Roll(0, Utilities.GetEnumLength<ExoticLanguage>());
+                language = RNG.ReturnRandom(list);
+                tries++;
             }
-            if (tries >= 50) return false;
-            ExoticLanguages[index] = true;
+            if (tries >= 49) return false;
+            AddProficiency(language);
             return true;
         }
-        internal bool AddRandomProf(Weapon weapon)
+        internal bool AddRandomProf(List<Instrument> list)
         {
             int tries = 0;
-            int index = RNG.Roll(0, Utilities.GetEnumLength<Weapon>());
-            while (WeaponProficiency[index] && tries++ < 50)
+            Instrument instrument = RNG.ReturnRandom(list);
+            while (IsProficient(instrument) && tries < 50)
             {
-                index = RNG.Roll(0, Utilities.GetEnumLength<Weapon>());
+                instrument = RNG.ReturnRandom(list);
+                tries++;
             }
-            if (tries >= 50) return false;
-            WeaponProficiency[index] = true;
+            if (tries >= 49) return false;
+            AddProficiency(instrument);
             return true;
         }
-        internal bool AddRandomProf(Armor armor)
+        internal bool AddRandomProf(List<ArtisanTool> list)
         {
             int tries = 0;
-            int index = RNG.Roll(0, Utilities.GetEnumLength<Armor>());
-            while (ArmorProficiency[index] && tries++ < 50)
+            ArtisanTool tool = RNG.ReturnRandom(list);
+            while (IsProficient(tool) && tries < 50)
             {
-                index = RNG.Roll(0, Utilities.GetEnumLength<Armor>());
+                tool = RNG.ReturnRandom(list);
+                tries++;
             }
-            if (tries >= 50) return false;
-            ArmorProficiency[index] = true;
+            if (tries >= 49) return false;
+            AddProficiency(tool);
             return true;
         }
 
