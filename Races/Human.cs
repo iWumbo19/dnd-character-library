@@ -8,6 +8,7 @@ namespace DnDCharacterCreator.Races
 {
     public class Human : IRace
     {
+        public Race Race { get; private set; } = Race.Human;
         public void Build(Character character)
         {
             character.IncreaseStat(Stat.Strength, 1);
@@ -24,5 +25,10 @@ namespace DnDCharacterCreator.Races
             else
                 character.AddProficiency(RNG.ReturnRandom<ExoticLanguage>());
         }
+        public Race GetRaceOption()
+        {
+            return Race;
+        }
     }
+    
 }

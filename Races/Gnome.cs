@@ -7,6 +7,7 @@ namespace DnDCharacterCreator.Races
 {
     public class Gnome : IRace
     {
+        public Race Race { get; private set; } = Race.Gnome;
         public void Build(Character character)
         {
             character.IncreaseStat(Stat.Intelligence, 2);
@@ -32,6 +33,10 @@ namespace DnDCharacterCreator.Races
                 default:
                     throw new Exception("Failed to apply Halfling Subrace within Character Builder");
             }
+        }
+        public Race GetRaceOption()
+        {
+            return Race;
         }
     }
 }

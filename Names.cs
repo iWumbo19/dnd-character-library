@@ -1,4 +1,5 @@
-﻿using DnDCharacterCreator.Models;
+﻿using DnDCharacterCreator.Interfaces;
+using DnDCharacterCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -604,13 +605,10 @@ namespace DnDCharacterCreator
             {"Weary" }
         };
 
-        public static string Generate(Character character)
+        
+        public static string Generate(IRace race)
         {
-            return Generate(character.Race);
-        }
-        public static string Generate(Options.Race race)
-        {
-            switch (race)
+            switch (race.GetRaceOption())
             {
                 case Options.Race.Dragonborn:
                     return Dragonborn();

@@ -26,7 +26,7 @@ namespace DnDCharacterCreator.Models
             Abilities = new bool[Utilities.GetEnumLength<Ability>()];
             Race = GetRandomRace();
             Class = GetRandomClass();
-            Name = Names.Generate(this);
+            Name = Names.Generate(this.Race);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();
             Race.Build(this);
@@ -49,7 +49,7 @@ namespace DnDCharacterCreator.Models
             Race = race;
             Class = _class;
             Personality = new Personality();
-            Name = Names.Generate(this);
+            Name = Names.Generate(this.Race);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();
             Race.Build(this);

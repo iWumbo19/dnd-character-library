@@ -7,6 +7,7 @@ namespace DnDCharacterCreator.Races
 {
     public class Dragonborn : IRace
     {
+        public Race Race { get; private set; } = Race.Dragonborn;
         public void Build(Character character)
         {
             character.IncreaseStat(Stat.Strength, 1);
@@ -51,6 +52,11 @@ namespace DnDCharacterCreator.Races
                 default:
                     throw new Exception("Failed to apply Halfling Subrace within Character Builder");
             }
+        }
+
+        public Race GetRaceOption()
+        {
+            return Race;
         }
     }
 }

@@ -6,6 +6,8 @@ namespace DnDCharacterCreator.Races
 {
     public class HalfOrc : IRace
     {
+        public Race Race { get; private set; } = Race.HalfOrc;
+
         public void Build(Character character)
         {
             character.IncreaseStat(Stat.Strength, 2);
@@ -18,5 +20,10 @@ namespace DnDCharacterCreator.Races
             character.AddProficiency(StandardLanguage.Common);
             character.AddProficiency(StandardLanguage.Orc);
         }
+        public Race GetRaceOption()
+        {
+            return Race;
+        }
     }
+    
 }

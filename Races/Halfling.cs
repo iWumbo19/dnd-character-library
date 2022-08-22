@@ -7,6 +7,7 @@ namespace DnDCharacterCreator.Races
 {
     public class Halfling : IRace
     {
+        public Race Race { get; private set; } = Race.Halfling;
         public void Build(Character character)
         {
             character.IncreaseStat(Stat.Dexterity, 1);
@@ -30,6 +31,10 @@ namespace DnDCharacterCreator.Races
                 default:
                     throw new Exception("Failed to apply Halfling Subrace within Character Builder");
             }
+        }
+        public Race GetRaceOption()
+        {
+            return Race;
         }
     }
 }

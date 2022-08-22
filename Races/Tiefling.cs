@@ -6,6 +6,7 @@ namespace DnDCharacterCreator.Races
 {
     class Tiefling : IRace
     {
+        public Race Race { get; private set; } = Race.Tiefling;
         public void Build(Character character)
         {
             character.IncreaseStat(Stat.Intelligence, 1);
@@ -17,5 +18,10 @@ namespace DnDCharacterCreator.Races
             character.AddProficiency(StandardLanguage.Common);
             character.AddProficiency(ExoticLanguage.Infernal);
         }
+        public Race GetRaceOption()
+        {
+            return Race;
+        }
     }
+    
 }

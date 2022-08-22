@@ -7,6 +7,7 @@ namespace DnDCharacterCreator.Races
 {
     public class Elf : IRace
     {
+        public Race Race { get; private set; } = Race.Elf;
         public void Build(Character character)
         {
             character.IncreaseStat(Stat.Dexterity, 1);
@@ -51,6 +52,10 @@ namespace DnDCharacterCreator.Races
                 default:
                     throw new Exception("Failed to apply Elf Subrace within Character Builder");
             }
+        }
+        public Race GetRaceOption()
+        {
+            return Race;
         }
     }
 }

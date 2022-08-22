@@ -8,6 +8,7 @@ namespace DnDCharacterCreator.Races
 {
     public class Dwarf : IRace
     {
+        public Race Race { get; private set; } = Race.Dwarf;
         List<ArtisanTool> dwarfToolOptions = new List<ArtisanTool>()
             {
                 ArtisanTool.SmithTools,
@@ -41,6 +42,10 @@ namespace DnDCharacterCreator.Races
                 default:
                     throw new Exception("Failed to apply Dwarf Subrace within Character Builder");
             }
+        }
+        public Race GetRaceOption()
+        {
+            return Race;
         }
     }
 }

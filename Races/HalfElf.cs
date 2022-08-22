@@ -6,6 +6,7 @@ namespace DnDCharacterCreator.Races
 {
     public class HalfElf : IRace
     {
+        public Race Race { get; private set; } = Race.HalfElf;
         public void Build(Character character)
         {
             character.IncreaseStat(Stat.Charisma, 2);
@@ -25,6 +26,10 @@ namespace DnDCharacterCreator.Races
             character.AddProficiency(skillOne);
             character.AddProficiency(skillTwo);
             character.AddProficiency(RNG.ReturnRandom<StandardLanguage>());
+        }
+        public Race GetRaceOption()
+        {
+            return Race;
         }
     }
 }
