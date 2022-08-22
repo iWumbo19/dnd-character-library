@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DnDCharacterCreator.Interfaces
 {
-    internal interface IClass
+    public interface IClass
     {
         public void AssignStats(Character character);
         public void LevelOne(Character character);

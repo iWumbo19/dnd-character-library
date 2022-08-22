@@ -11,7 +11,6 @@ namespace DnDCharacterCreator
     {
         public IRace Race;
         public IClass Class;
-        public 
 
         public CharacterEditor(Character character)
         {

@@ -1,4 +1,6 @@
-﻿using DnDCharacterCreator.Options;
+﻿using DnDCharacterCreator.Classes;
+using DnDCharacterCreator.Interfaces;
+using DnDCharacterCreator.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,15 +24,15 @@ namespace DnDCharacterCreator.Models
             ExoticLanguages = new bool[Utilities.GetEnumLength<ExoticLanguage>()];
             Abilities = new bool[Utilities.GetEnumLength<Ability>()];
             Race = RNG.ReturnRandom<Race>();
-            Class = RNG.ReturnRandom<Class>();
+            Class = ChooseClass();
             Name = Names.Generate(this);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();
             CharacterEditor ce = new CharacterEditor(this);
             ce.Race.Build(this);
-            ce.Class.LevelOne(this);
+            Class.LevelOne(this);
         }
-        public Character(Class _class, Race race)
+        public Character(IClass _class, Race race)
         {
             Level = 1;
             Stats = new int[6];
@@ -56,7 +58,7 @@ namespace DnDCharacterCreator.Models
         }
         public Race Race { get; private set; }
         public dynamic SubRace { get; internal set; }
-        public Class Class { get; private set; }
+        public IClass Class { get; private set; }
         public dynamic SubClass { get; internal set; }
         public string Name { get; private set; }
         public Personality Personality { get; private set; }
@@ -494,6 +496,38 @@ namespace DnDCharacterCreator.Models
         private string ProfStar(bool prof)
         {
             return prof ? "*" : " ";
+        }
+        private IClass ChooseClass()
+        {
+            switch (RNG.ReturnRandom<Class>())
+            {
+                case Options.Class.Barbarian:
+                    return new Barbarian();
+                case Options.Class.Bard:
+                    return new Bard();
+                case Options.Class.Cleric:
+                    return new Cleric();
+                case Options.Class.Druid:
+                    return new Druid();
+                case Options.Class.Fighter:
+                    return new Fighter();
+                case Options.Class.Monk:
+                    return new Monk();
+                case Options.Class.Paladin:
+                    return new Paladin();
+                case Options.Class.Ranger:
+                    return new Ranger();
+                case Options.Class.Rouge:
+                    return new Rouge();
+                case Options.Class.Sorcerer:
+                    return new Sorcerer();
+                case Options.Class.Warlock:
+                    return new Warlock();
+                case Options.Class.Wizard:
+                    return new Wizard();
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }
