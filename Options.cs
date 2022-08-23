@@ -43,7 +43,7 @@ namespace DnDCharacterCreator.Options
     {
         Good,
         Neutral,
-
+        Evil
     }
     public enum Background
     {
