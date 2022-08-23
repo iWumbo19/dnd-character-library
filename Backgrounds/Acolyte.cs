@@ -72,20 +72,27 @@ namespace DnDCharacterCreator.Backgrounds
             {
                 case 1:
                     character.Personality.Alignment.Law = Options.Law.Lawful;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld";
                 case 2:
+                    character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Good;
                     return "Charity. I always try to help those in need, no matter what the personal cost.";
                 case 3:
                     character.Personality.Alignment.Law = Options.Law.Chaotic;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Change. We must help bring about the changes the gods are constantly working in the world.";
                 case 4:
                     character.Personality.Alignment.Law = Options.Law.Lawful;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Power. I hope to one day rise to the top of my faith’s religious hierarchy.";
                 case 5:
                     character.Personality.Alignment.Law = Options.Law.Lawful;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well.";
                 case 6:
+                    character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Aspiration. I seek to prove myself worthy of my god’s favor by matching my actions against his or her teachings.";
                 default:
                     return "";

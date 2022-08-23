@@ -1,5 +1,6 @@
 ﻿using DnDCharacterCreator.Interfaces;
 using DnDCharacterCreator.Models;
+using DnDCharacterCreator.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -38,7 +39,7 @@ namespace DnDCharacterCreator.Backgrounds
                 case 6:
                     return "Someone I loved died because of a mistake I made. That will never happen again. ";
                 default:
-                    throw new Exception();
+                    return "";
             }
         }
 
@@ -60,7 +61,7 @@ namespace DnDCharacterCreator.Backgrounds
                 case 6:
                     return "An innocent person is in prison for a crime that I committed. I’m okay with that. ";
                 default:
-                    throw new Exception();
+                    return "";
             }
         }
 
@@ -71,23 +72,30 @@ namespace DnDCharacterCreator.Backgrounds
             {
                 case 1:
                     character.Personality.Alignment.Law = Options.Law.Lawful;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Honor. I don’t steal from others in the trade.";
                 case 2:
                     character.Personality.Alignment.Law = Options.Law.Chaotic;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Freedom. Chains are meant to be broken, as are those who would forge them.";
                 case 3:
+                    character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Good;
                     return "Charity. I steal from the wealthy so that I can help people in need.";
                 case 4:
+                    character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Evil;
                     return "Greed. I will do whatever it takes to become wealthy.";
                 case 5:
                     character.Personality.Alignment.Law = Options.Law.Neutral;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "People. I’m loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care.";
                 case 6:
+                    character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Redemption. There’s a spark of good in everyone. ";
                 default:
-                    throw new Exception();
+                    return "";
             }
         }
 
@@ -113,7 +121,7 @@ namespace DnDCharacterCreator.Backgrounds
                 case 8:
                     return "I blow up at the slightest insult.";
                 default:
-                    throw new Exception("Trait Roll Failed?");
+                    return "";
             }
         }
     }

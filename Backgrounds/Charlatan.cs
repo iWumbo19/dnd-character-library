@@ -1,5 +1,6 @@
 ﻿using DnDCharacterCreator.Interfaces;
 using DnDCharacterCreator.Models;
+using DnDCharacterCreator.Options;
 
 namespace DnDCharacterCreator.Backgrounds
 {
@@ -68,20 +69,27 @@ namespace DnDCharacterCreator.Backgrounds
             {
                 case 1:
                     character.Personality.Alignment.Law = Options.Law.Chaotic;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Independence. I am a free spirit—no one tells me what to do";
                 case 2:
                     character.Personality.Alignment.Law = Options.Law.Lawful;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Fairness. I never target people who can’t afford to lose a few coins.";
                 case 3:
+                    character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Good;
                     return "Charity. I distribute the money I acquire to the people who really need it.";
                 case 4:
                     character.Personality.Alignment.Law = Options.Law.Chaotic;
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Creativity. I never run the same con twice.";
                 case 5:
+                    character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Good;
                     return "Friendship. Material goods come and go. Bonds of friendship last forever.";
                 case 6:
+                    character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
+                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
                     return "Aspiration. I’m determined to make something of myself";
                 default:
                     return "";
