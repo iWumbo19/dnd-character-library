@@ -131,6 +131,13 @@ namespace DnDCharacterCreator
             Weapon.Longbow,
             Weapon.Net
         };
+        public static readonly List<ArtisanTool> GamingTools = new List<ArtisanTool>()
+        {
+            ArtisanTool.DiceSet,
+            ArtisanTool.DragonChess,
+            ArtisanTool.PlayingCards,
+            ArtisanTool.ThreeDragonAnte
+        };
 
         public static int GetEnumLength<T>() => Enum.GetNames(typeof(T)).Length;
         public static List<T> GetEnumList<T>() => Enum.GetValues(typeof(T)).Cast<T>().ToList();

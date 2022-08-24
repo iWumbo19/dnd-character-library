@@ -262,10 +262,8 @@ namespace DnDCharacterCreator.Options
         ThievesTools,
         HerbalismKit,
         DisguiseKit,
-        ForgeryKit
-    }
-    public enum GamingSet
-    {
+        ForgeryKit,
+        NavigatorsTools,
         DiceSet,
         DragonChess,
         PlayingCards,
