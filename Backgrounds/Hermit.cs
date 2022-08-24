@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DnDCharacterCreator.Backgrounds
 {
-    public class Entertainer : IBackground
+    public class Hermit : IBackground
     {
         public void Build(Character character)
         {
@@ -15,11 +15,10 @@ namespace DnDCharacterCreator.Backgrounds
             character.Personality.Flaw = ChooseFlaw();
             character.Personality.Ideal = ChooseIdeal(character);
             character.Personality.Trait = ChooseTrait();
-            character.AddProficiency(Skill.Acrobatics);
-            character.AddProficiency(Skill.Performance);
-            character.AddProficiency(ArtisanTool.DisguiseKit);
-            character.AddRandomProf(Utilities.GetEnumList<Instrument>());
-
+            character.AddProficiency(Options.Skill.Medicine);
+            character.AddProficiency(Options.Skill.Religion);
+            character.AddProficiency(ArtisanTool.HerbalismKit);
+            character.AddRandomProf(Utilities.GetEnumList<StandardLanguage>());
         }
 
         public string ChooseBond()
@@ -28,17 +27,17 @@ namespace DnDCharacterCreator.Backgrounds
             switch (roll)
             {
                 case 1:
-                    return "My instrument is my most treasured possession, and it reminds me of someone I love. ";
+                    return "Nothing is more important than the other members of my hermitage, order, or association. ";
                 case 2:
-                    return "Someone stole my precious instrument, and someday I’ll get it back. ";
+                    return "I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them. ";
                 case 3:
-                    return "I want to be famous, whatever it takes. ";
+                    return "I’m still seeking the enlightenment I pursued in my seclusion, and it still eludes me. ";
                 case 4:
-                    return "I idolize a hero of the old tales and measure my deeds against that person’s. ";
+                    return "I entered seclusion because I loved someone I could not have. ";
                 case 5:
-                    return "I will do anything to prove myself superior to my hated rival. ";
+                    return "Should my discovery come to light, it could bring ruin to the world. ";
                 case 6:
-                    return "I would do anything for the other members of my old troupe.";
+                    return "My isolation gave me great insight into a great evil that only I can destroy. ";
                 default:
                     return "";
             }
@@ -50,17 +49,17 @@ namespace DnDCharacterCreator.Backgrounds
             switch (roll)
             {
                 case 1:
-                    return "I’ll do anything to win fame and renown. ";
+                    return "Now that I’ve returned to the world, I enjoy its delights a little too much. ";
                 case 2:
-                    return "I’m a sucker for a pretty face. ";
+                    return "I harbor dark, bloodthirsty thoughts that my isolation and meditation failed to quell. ";
                 case 3:
-                    return "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around. ";
+                    return "I am dogmatic in my thoughts and philosophy. ";
                 case 4:
-                    return "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat. ";
+                    return "I let my need to win arguments overshadow friendships and harmony. ";
                 case 5:
-                    return "I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble. ";
+                    return "I’d risk too much to uncover a lost bit of knowledge. ";
                 case 6:
-                    return "Despite my best efforts, I am unreliable to my friends. ";
+                    return "I like keeping secrets and won’t share them with anyone. ";
                 default:
                     return "";
             }
@@ -74,27 +73,27 @@ namespace DnDCharacterCreator.Backgrounds
                 case 1:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Good;
-                    return "Beauty. When I perform, I make the world better than it was.";
+                    return "Greater Good. My gifts are meant to be shared with all, not used for my own benefit.";
                 case 2:
                     character.Personality.Alignment.Law = Options.Law.Lawful;
                     character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
-                    return "Tradition. The stories, legends, and songs of the past must never be forgotten, for they teach us who we are.";
+                    return "Logic. Emotions must not cloud our sense of what is right and true, or our logical thinking.";
                 case 3:
                     character.Personality.Alignment.Law = Options.Law.Chaotic;
                     character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
-                    return "Creativity. The world is in need of new ideas and bold action";
+                    return "Free Thinking. Inquiry and curiosity are the pillars of progress.";
                 case 4:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Evil;
-                    return "Greed. I’m only in it for the money and fame.";
+                    return "Power. Solitude and contemplation are paths toward mystical or magical power.";
                 case 5:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Neutral;
-                    return "People. I like seeing the smiles on people’s faces when I perform. That’s all that matters.";
+                    return "Live and Let Live. Meddling in the affairs of others only causes trouble.";
                 case 6:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
-                    return "Honesty. Art should reflect the soul; it should come from within and reveal who we really are.";
+                    return "";
                 default:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
@@ -108,21 +107,21 @@ namespace DnDCharacterCreator.Backgrounds
             switch (roll)
             {
                 case 1:
-                    return "I know a story relevant to almost every situation. ";
+                    return "I’ve been isolated for so long that I rarely speak, preferring gestures and the occasional grunt. ";
                 case 2:
-                    return "Whenever I come to a new place, I collect local rumors and spread gossip. ";
+                    return "I am utterly serene, even in the face of disaster. ";
                 case 3:
-                    return "I’m a hopeless romantic, always searching for that “special someone.” ";
+                    return "The leader of my community had something wise to say on every topic, and I am eager to share that wisdom. ";
                 case 4:
-                    return "Nobody stays angry at me or around me for long, since I can defuse any amount of tension. ";
+                    return "I feel tremendous empathy for all who suffer. ";
                 case 5:
-                    return "I love a good insult, even one directed at me. ";
+                    return "I’m oblivious to etiquette and social expectations. ";
                 case 6:
-                    return "I get bitter if I’m not the center of attention. ";
+                    return "I connect everything that happens to me to a grand, cosmic plan. ";
                 case 7:
-                    return "I’ll settle for nothing less than perfection. ";
+                    return "I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings. ";
                 case 8:
-                    return "I change my mood or my mind as quickly as I change key in a song. ";
+                    return "I am working on a grand philosophical theory and love sharing my ideas. ";
                 default:
                     return "";
             }

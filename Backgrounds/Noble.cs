@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DnDCharacterCreator.Backgrounds
 {
-    public class Entertainer : IBackground
+    public class Noble : IBackground
     {
         public void Build(Character character)
         {
@@ -15,11 +15,9 @@ namespace DnDCharacterCreator.Backgrounds
             character.Personality.Flaw = ChooseFlaw();
             character.Personality.Ideal = ChooseIdeal(character);
             character.Personality.Trait = ChooseTrait();
-            character.AddProficiency(Skill.Acrobatics);
-            character.AddProficiency(Skill.Performance);
-            character.AddProficiency(ArtisanTool.DisguiseKit);
-            character.AddRandomProf(Utilities.GetEnumList<Instrument>());
-
+            character.AddProficiency(Options.Skill.History);
+            character.AddProficiency(Options.Skill.Persuasion);
+            character.AddRandomProf(Utilities.GetEnumList<ArtisanTool>());
         }
 
         public string ChooseBond()
@@ -28,17 +26,17 @@ namespace DnDCharacterCreator.Backgrounds
             switch (roll)
             {
                 case 1:
-                    return "My instrument is my most treasured possession, and it reminds me of someone I love. ";
+                    return "I will face any challenge to win the approval of my family. ";
                 case 2:
-                    return "Someone stole my precious instrument, and someday I’ll get it back. ";
+                    return "My house’s alliance with another noble family must be sustained at all costs. ";
                 case 3:
-                    return "I want to be famous, whatever it takes. ";
+                    return "Nothing is more important than the other members of my family. ";
                 case 4:
-                    return "I idolize a hero of the old tales and measure my deeds against that person’s. ";
+                    return "I am in love with the heir of a family that my family despises. ";
                 case 5:
-                    return "I will do anything to prove myself superior to my hated rival. ";
+                    return "My loyalty to my sovereign is unwavering. ";
                 case 6:
-                    return "I would do anything for the other members of my old troupe.";
+                    return "The common folk must see me as a hero of the people. ";
                 default:
                     return "";
             }
@@ -50,17 +48,17 @@ namespace DnDCharacterCreator.Backgrounds
             switch (roll)
             {
                 case 1:
-                    return "I’ll do anything to win fame and renown. ";
+                    return "I secretly believe that everyone is beneath me. ";
                 case 2:
-                    return "I’m a sucker for a pretty face. ";
+                    return "I hide a truly scandalous secret that could ruin my family forever. ";
                 case 3:
-                    return "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around. ";
+                    return "I too often hear veiled insults and threats in every word addressed to me, and I’m quick to anger. ";
                 case 4:
-                    return "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat. ";
+                    return "I have an insatiable desire for carnal pleasures. ";
                 case 5:
-                    return "I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble. ";
+                    return "In fact, the world does revolve around me. ";
                 case 6:
-                    return "Despite my best efforts, I am unreliable to my friends. ";
+                    return "By my words and actions, I often bring shame to my family. ";
                 default:
                     return "";
             }
@@ -74,27 +72,27 @@ namespace DnDCharacterCreator.Backgrounds
                 case 1:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Good;
-                    return "Beauty. When I perform, I make the world better than it was.";
+                    return "Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity.";
                 case 2:
                     character.Personality.Alignment.Law = Options.Law.Lawful;
                     character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
-                    return "Tradition. The stories, legends, and songs of the past must never be forgotten, for they teach us who we are.";
+                    return "Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine.";
                 case 3:
                     character.Personality.Alignment.Law = Options.Law.Chaotic;
                     character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
-                    return "Creativity. The world is in need of new ideas and bold action";
+                    return "Independence. I must prove that I can handle myself without the coddling of my family.";
                 case 4:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Evil;
-                    return "Greed. I’m only in it for the money and fame.";
+                    return "Power. If I can attain more power, no one will tell me what to do.";
                 case 5:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = Options.Order.Neutral;
-                    return "People. I like seeing the smiles on people’s faces when I perform. That’s all that matters.";
+                    return "Family. Blood runs thicker than water. ";
                 case 6:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
-                    character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
-                    return "Honesty. Art should reflect the soul; it should come from within and reveal who we really are.";
+                    character.Personality.Alignment.Order = Options.Order.Good;
+                    return "Noble Obligation. It is my duty to protect and care for the people beneath me.";
                 default:
                     character.Personality.Alignment.Law = RNG.ReturnRandom<Law>();
                     character.Personality.Alignment.Order = RNG.ReturnRandom<Order>();
@@ -108,21 +106,21 @@ namespace DnDCharacterCreator.Backgrounds
             switch (roll)
             {
                 case 1:
-                    return "I know a story relevant to almost every situation. ";
+                    return "My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world. ";
                 case 2:
-                    return "Whenever I come to a new place, I collect local rumors and spread gossip. ";
+                    return "The common folk love me for my kindness and generosity. ";
                 case 3:
-                    return "I’m a hopeless romantic, always searching for that “special someone.” ";
+                    return "No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses.  ";
                 case 4:
-                    return "Nobody stays angry at me or around me for long, since I can defuse any amount of tension. ";
+                    return "I take great pains to always look my best and follow the latest fashions. ";
                 case 5:
-                    return "I love a good insult, even one directed at me. ";
+                    return "I don’t like to get my hands dirty, and I won’t be caught dead in unsuitable accommodations. ";
                 case 6:
-                    return "I get bitter if I’m not the center of attention. ";
+                    return "Despite my noble birth, I do not place myself above other folk. We all have the same blood. ";
                 case 7:
-                    return "I’ll settle for nothing less than perfection. ";
+                    return "My favor, once lost, is lost forever. ";
                 case 8:
-                    return "I change my mood or my mind as quickly as I change key in a song. ";
+                    return "If you do me an injury, I will crush you, ruin your name, and salt your fields. dd";
                 default:
                     return "";
             }
