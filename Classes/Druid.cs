@@ -45,6 +45,7 @@ namespace DnDCharacterCreator.Classes
             character.AddProficiency(StandardLanguage.Druidic);
             // ADD TWO RANDOM SPELLS   
             character.AddAbility(Ability.WildShape);
+            character.WeaponEquiped = WeaponFactory.GetWeapon(Weapon.Quarterstaff);
         }
         public void AssignStats(Character character)
         {

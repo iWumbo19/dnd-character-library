@@ -31,6 +31,7 @@ namespace DnDCharacterCreator.Classes
             character.AddAbility(Ability.OtherWorldlyPatron);
             character.AddAbility(Ability.PactMagic);
             // ADD 2 RANDOM SPELLS
+            character.WeaponEquiped = WeaponFactory.GetWeapon(Weapon.Quarterstaff);
         }
         public void AssignStats(Character character)
         {

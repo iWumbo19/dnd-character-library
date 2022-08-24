@@ -31,6 +31,7 @@ namespace DnDCharacterCreator.Classes
             character.AddRandomProf(wizardSkillOptions);
             character.AddRandomProf(wizardSkillOptions);
             character.AddAbility(Ability.ArcaneRecovery);
+            character.WeaponEquiped = WeaponFactory.GetWeapon(Weapon.Quarterstaff);
         }
         public void AssignStats(Character character)
         {

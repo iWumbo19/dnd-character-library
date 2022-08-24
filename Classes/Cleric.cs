@@ -8,6 +8,11 @@ namespace DnDCharacterCreator.Classes
 {
     public class Cleric : IClass
     {
+        private readonly List<Weapon> clericWeaponOptions = new List<Weapon>()
+        {
+            Weapon.Mace,
+            Weapon.Warhammer
+        };
         private readonly List<Skill> clericSkillOptions = new List<Skill>()
             {
                 Skill.History,
@@ -84,7 +89,7 @@ namespace DnDCharacterCreator.Classes
                 default:
                     throw new Exception("Not subrace found for cleric");
             }
-
+            character.WeaponEquiped = WeaponFactory.GetWeapon(RNG.ReturnRandom(clericWeaponOptions));
         }
         public void AssignStats(Character character)
         {

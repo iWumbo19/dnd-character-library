@@ -7,6 +7,7 @@ namespace DnDCharacterCreator.Classes
 {
     public class Fighter : IClass
     {
+        
         private readonly List<Skill> fighterSkillOptions = new List<Skill>()
             {
                 Skill.Acrobatics,
@@ -32,6 +33,7 @@ namespace DnDCharacterCreator.Classes
             character.AddProficiency(Stat.Constitution);
             character.AddRandomProf(fighterSkillOptions);
             character.AddRandomProf(fighterSkillOptions);
+            character.WeaponEquiped = WeaponFactory.GetWeapon(RNG.ReturnRandom(Utilities.AllWeapons));
         }
         public void AssignStats(Character character)
         {

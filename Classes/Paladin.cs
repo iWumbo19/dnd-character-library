@@ -35,6 +35,7 @@ namespace DnDCharacterCreator.Classes
             character.AddRandomProf(paladinSkillOptions);
             character.AddAbility(Ability.DivineSense);
             character.AddAbility(Ability.LayOnHands);
+            character.WeaponEquiped = WeaponFactory.GetWeapon(RNG.ReturnRandom(Utilities.MartialMeleeWeapons));
         }
         public void AssignStats(Character character)
         {

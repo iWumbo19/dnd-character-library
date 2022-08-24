@@ -31,6 +31,7 @@ namespace DnDCharacterCreator.Classes
             character.AddRandomProf(barbSkillOptions);
             character.AddAbility(Ability.Rage);
             character.AddAbility(Ability.UnarmoredDefense);
+            character.WeaponEquiped = WeaponFactory.GetWeapon(Options.Weapon.Greataxe);
         }
         public void AssignStats(Character character)
         {

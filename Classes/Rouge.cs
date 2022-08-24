@@ -43,6 +43,7 @@ namespace DnDCharacterCreator.Classes
             character.AddAbility(Ability.Expertise);
             character.AddAbility(Ability.SneakAttack);
             character.AddProficiency(StandardLanguage.ThievesCant);
+            character.WeaponEquiped = WeaponFactory.GetWeapon(Weapon.Dagger);
         }
         public void AssignStats(Character character)
         {

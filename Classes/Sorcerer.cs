@@ -32,6 +32,7 @@ namespace DnDCharacterCreator.Classes
             character.AddRandomProf(sorcererSkillOptions);
             character.AddRandomProf(sorcererSkillOptions);
             // ADD FOUR RANDOM CANTRIPS 
+            character.WeaponEquiped = WeaponFactory.GetWeapon(Weapon.Quarterstaff);
         }
         public void AssignStats(Character character)
         {

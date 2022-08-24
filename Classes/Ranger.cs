@@ -33,6 +33,7 @@ namespace DnDCharacterCreator.Classes
             character.AddRandomProf(rangerSkillOptions);
             character.AddAbility(Ability.FavoredEnemy);
             character.AddAbility(Ability.NaturalExplorer);
+            character.WeaponEquiped = WeaponFactory.GetWeapon(Weapon.Longbow);
         }
         public void AssignStats(Character character)
         {

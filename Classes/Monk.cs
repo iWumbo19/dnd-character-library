@@ -31,6 +31,7 @@ namespace DnDCharacterCreator.Classes
             character.AddRandomProf(monkSkillOptions);
             character.AddAbility(Ability.UnarmoredDefense);
             character.AddAbility(Ability.MartialArts);
+            character.WeaponEquiped = WeaponFactory.GetWeapon(Weapon.Quarterstaff);
         }
         public void AssignStats(Character character)
         {
