@@ -100,6 +100,13 @@ namespace DnDCharacterCreator.Options
         HeavyCrossbow,
         Net
     }
+    public enum WeaponType
+    {
+        SimpleMelee,
+        SimpleRanged,
+        MartialMelee,
+        MartialRanged
+    }
     public enum Armor
     {
         Light,
