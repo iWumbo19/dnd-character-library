@@ -264,6 +264,13 @@ namespace DnDCharacterCreator.Options
         DisguiseKit,
         ForgeryKit
     }
+    public enum GamingSet
+    {
+        DiceSet,
+        DragonChess,
+        PlayingCards,
+        ThreeDragonAnte
+    }
     public enum Ability
     {
         DarkVision,
