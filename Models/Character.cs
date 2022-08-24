@@ -19,7 +19,7 @@ namespace DnDCharacterCreator.Models
             Resistances = new bool[Utilities.GetEnumLength<DamageType>()];
             ToolProficiency = new bool[Utilities.GetEnumLength<ArtisanTool>()];
             ArmorProficiency = new bool[Utilities.GetEnumLength<Armor>()];
-            WeaponProficiency = new bool[Utilities.GetEnumLength<Weapon>()];
+            WeaponProficiency = new bool[Utilities.GetEnumLength<WeaponModel>()];
             InstrumentProficiency = new bool[Utilities.GetEnumLength<Instrument>()];
             StandardLanguages = new bool[Utilities.GetEnumLength<StandardLanguage>()];
             ExoticLanguages = new bool[Utilities.GetEnumLength<ExoticLanguage>()];
@@ -41,7 +41,7 @@ namespace DnDCharacterCreator.Models
             Resistances = new bool[Utilities.GetEnumLength<DamageType>()];
             ToolProficiency = new bool[Utilities.GetEnumLength<ArtisanTool>()];
             ArmorProficiency = new bool[Utilities.GetEnumLength<Armor>()];
-            WeaponProficiency = new bool[Utilities.GetEnumLength<Weapon>()];
+            WeaponProficiency = new bool[Utilities.GetEnumLength<WeaponModel>()];
             InstrumentProficiency = new bool[Utilities.GetEnumLength<Instrument>()];
             StandardLanguages = new bool[Utilities.GetEnumLength<StandardLanguage>()];
             ExoticLanguages = new bool[Utilities.GetEnumLength<ExoticLanguage>()];
@@ -68,6 +68,7 @@ namespace DnDCharacterCreator.Models
             get { return Tables.LevelProf[Level]; }
             protected set { }
         }
+        public WeaponModel WeaponEquiped { get; set; }
 
 
         public string Backstory { get;  private set; }
@@ -245,7 +246,7 @@ namespace DnDCharacterCreator.Models
         public bool IsProficient(Instrument instrument) => InstrumentProficiency[(int)instrument];
         public bool IsProficient(StandardLanguage standard) => StandardLanguages[(int)standard];
         public bool IsProficient(ExoticLanguage exotic) => ExoticLanguages[(int)exotic];
-        public bool IsProficient(Weapon weapon) => WeaponProficiency[(int)weapon];
+        public bool IsProficient(Options.Weapon weapon) => WeaponProficiency[(int)weapon];
         public bool IsProficient(Armor armor) => ArmorProficiency[(int)armor];
         public bool IsProficient(Skill skill) => SkillProficincy[(int)skill];
         public bool IsProficient(Stat stat) => StatSaveProf[(int)stat];
@@ -308,7 +309,7 @@ namespace DnDCharacterCreator.Models
         }
         public bool AddProficiency(List<Weapon> weapons)
         {
-            foreach (Weapon weapon in weapons)
+            foreach (WeaponModel weapon in weapons)
             {
                 AddProficiency(weapon);
             }
