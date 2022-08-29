@@ -101,5 +101,6 @@ namespace DnDCharacterCreator.Classes
             character.Stats[(int)Stat.Wisdom] = stats[3];
             character.Stats[(int)Stat.Charisma] = stats[5];
         }
+        public string GetClassName() => "Cleric";
     }
 }

@@ -7,5 +7,6 @@ namespace DnDCharacterCreator.Interfaces
     {
         public void Build(Character character);
         public Race GetRaceOption();
+        public string GetRaceName();
     }
 }

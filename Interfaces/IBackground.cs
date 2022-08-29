@@ -14,6 +14,7 @@ namespace DnDCharacterCreator.Interfaces
         public string ChooseIdeal(Character character);
         public string ChooseBond();
         public string ChooseFlaw();
+        public string GetBackgroundName();
 
     }
 }

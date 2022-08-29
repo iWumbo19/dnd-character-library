@@ -47,5 +47,6 @@ namespace DnDCharacterCreator.Classes
             character.Stats[(int)Stat.Wisdom] = stats[5];
             character.Stats[(int)Stat.Charisma] = stats[2];
         }
+        public string GetClassName() => "Paladin";
     }
 }

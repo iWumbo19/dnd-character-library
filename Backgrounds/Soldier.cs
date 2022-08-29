@@ -125,5 +125,7 @@ namespace DnDCharacterCreator.Backgrounds
                     return "";
             }
         }
+        public string GetBackgroundName() => Options.Background.Soldier.ToString();
+
     }
 }

@@ -47,5 +47,6 @@ namespace DnDCharacterCreator.Classes
             character.Stats[(int)Stat.Wisdom] = stats[4];
             character.Stats[(int)Stat.Charisma] = stats[0];
         }
+        public string GetClassName() => "Bard";
     }
 }

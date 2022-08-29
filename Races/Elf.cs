@@ -57,5 +57,6 @@ namespace DnDCharacterCreator.Races
         {
             return Race;
         }
+        public string GetRaceName() => "Elf";
     }
 }

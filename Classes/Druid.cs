@@ -57,5 +57,6 @@ namespace DnDCharacterCreator.Classes
             character.Stats[(int)Stat.Wisdom] = stats[0];
             character.Stats[(int)Stat.Charisma] = stats[3];
         }
+        public string GetClassName() => "Druid";
     }
 }

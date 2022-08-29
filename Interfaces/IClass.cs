@@ -9,5 +9,6 @@ namespace DnDCharacterCreator.Interfaces
     {
         public void AssignStats(Character character);
         public void LevelOne(Character character);
+        public string GetClassName();
     }
 }
