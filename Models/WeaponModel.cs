@@ -12,13 +12,16 @@ namespace DnDCharacterCreator.Models
         public string Name { get; private set; }
         public DamageType DamageType { get; private set; }
         public WeaponType WeaponType { get; private set; }
-        public WeaponModel(string name, int dieAmount, int dieDmg, DamageType type, WeaponType weapontype)
+        public HitWith HitWith { get; private set; }
+
+        public WeaponModel(string name, int dieAmount, int dieDmg, DamageType type, WeaponType weapontype, HitWith hitWith = HitWith.Strength)
         {
             DieAmount = dieAmount;
             DamageDie = dieDmg;
             Name = name;
             DamageType = type;
             WeaponType = weapontype;
+            HitWith = hitWith;
         }
     }
 }

@@ -61,6 +61,12 @@ namespace DnDCharacterCreator.Options
         Soldier,
         Urchin
     }
+
+    public enum HitWith
+    {
+        Strength,
+        Dexterity
+    }
     public enum Weapon
     {
         Club,

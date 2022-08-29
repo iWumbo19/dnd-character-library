@@ -13,13 +13,13 @@ namespace DnDCharacterCreator
                 case Options.Weapon.Club:
                     return new Models.WeaponModel("Club", 1, 4, DamageType.Bludgeoning,WeaponType.SimpleMelee);
                 case Options.Weapon.Dagger:
-                    return new Models.WeaponModel("Dagger", 1, 4, DamageType.Piercing, WeaponType.SimpleMelee);
+                    return new Models.WeaponModel("Dagger", 1, 4, DamageType.Piercing, WeaponType.SimpleMelee, HitWith.Dexterity);
                 case Options.Weapon.Greatclub:
                     return new Models.WeaponModel("Greatclub", 1, 8, DamageType.Bludgeoning, WeaponType.SimpleMelee);
                 case Options.Weapon.Handaxe:
                     return new Models.WeaponModel("Handaxe",1,6,DamageType.Slashing, WeaponType.SimpleMelee);
                 case Options.Weapon.Javelin:
-                    return new Models.WeaponModel("Javelin",1,6,DamageType.Piercing, WeaponType.SimpleMelee);
+                    return new Models.WeaponModel("Javelin",1,6,DamageType.Piercing, WeaponType.SimpleMelee, HitWith.Dexterity);
                 case Options.Weapon.LightHammer:
                     return new Models.WeaponModel("Light Hammer",1,4,DamageType.Bludgeoning, WeaponType.SimpleMelee);
                 case Options.Weapon.Mace:
@@ -29,15 +29,15 @@ namespace DnDCharacterCreator
                 case Options.Weapon.Sickle:
                     return new Models.WeaponModel("Sickle",1,4,DamageType.Slashing, WeaponType.SimpleMelee);
                 case Options.Weapon.Spear:
-                    return new Models.WeaponModel("Spear",1,6, DamageType.Piercing, WeaponType.SimpleMelee);
+                    return new Models.WeaponModel("Spear",1,6, DamageType.Piercing, WeaponType.SimpleMelee, HitWith.Dexterity);
                 case Options.Weapon.Crossbow:
-                    return new Models.WeaponModel("Light Crossbow",1,8,DamageType.Piercing, WeaponType.SimpleRanged);
+                    return new Models.WeaponModel("Light Crossbow",1,8,DamageType.Piercing, WeaponType.SimpleRanged, HitWith.Dexterity);
                 case Options.Weapon.Dart:
-                    return new Models.WeaponModel("Dart",1,4,DamageType.Piercing, WeaponType.SimpleRanged);
+                    return new Models.WeaponModel("Dart",1,4,DamageType.Piercing, WeaponType.SimpleRanged, HitWith.Dexterity);
                 case Options.Weapon.Shortbow:
-                    return new Models.WeaponModel("Shortbow",1,6,DamageType.Piercing, WeaponType.SimpleRanged);
+                    return new Models.WeaponModel("Shortbow",1,6,DamageType.Piercing, WeaponType.SimpleRanged, HitWith.Dexterity);
                 case Options.Weapon.Sling:
-                    return new Models.WeaponModel("Sling",1,4,DamageType.Bludgeoning, WeaponType.SimpleRanged);
+                    return new Models.WeaponModel("Sling",1,4,DamageType.Bludgeoning, WeaponType.SimpleRanged, HitWith.Dexterity);
                 case Options.Weapon.Battleaxe:
                     return new Models.WeaponModel("Battleaxe",1,8,DamageType.Slashing, WeaponType.MartialMelee);
                 case Options.Weapon.Flail:
@@ -61,9 +61,9 @@ namespace DnDCharacterCreator
                 case Options.Weapon.Pike:
                     return new Models.WeaponModel("Pike",1,10,DamageType.Piercing, WeaponType.MartialMelee);
                 case Options.Weapon.Rapier:
-                    return new Models.WeaponModel("Rapier",1,8,DamageType.Piercing, WeaponType.MartialMelee);
+                    return new Models.WeaponModel("Rapier",1,8,DamageType.Piercing, WeaponType.MartialMelee, HitWith.Dexterity);
                 case Options.Weapon.Scimitar:
-                    return new Models.WeaponModel("Scimitar",1,6,DamageType.Slashing, WeaponType.MartialMelee);
+                    return new Models.WeaponModel("Scimitar",1,6,DamageType.Slashing, WeaponType.MartialMelee, HitWith.Dexterity);
                 case Options.Weapon.Shortsword:
                     return new Models.WeaponModel("Shortsword", 1,6,DamageType.Slashing, WeaponType.MartialMelee);
                 case Options.Weapon.Trident:
@@ -73,15 +73,15 @@ namespace DnDCharacterCreator
                 case Options.Weapon.Warhammer:
                     return new Models.WeaponModel("Warhammer",1,8,DamageType.Bludgeoning, WeaponType.MartialMelee);
                 case Options.Weapon.Whip:
-                    return new Models.WeaponModel("Whip",1,4,DamageType.Slashing, WeaponType.MartialMelee);
+                    return new Models.WeaponModel("Whip",1,4,DamageType.Slashing, WeaponType.MartialMelee, HitWith.Dexterity);
                 case Options.Weapon.Blowgun:
-                    return new Models.WeaponModel("Blowgun",1,1,DamageType.Piercing, WeaponType.MartialRanged);
+                    return new Models.WeaponModel("Blowgun",1,1,DamageType.Piercing, WeaponType.MartialRanged, HitWith.Dexterity);
                 case Options.Weapon.Longbow:
-                    return new Models.WeaponModel("Hand Crossbow",1,6,DamageType.Piercing, WeaponType.MartialRanged);
+                    return new Models.WeaponModel("Hand Crossbow",1,6,DamageType.Piercing, WeaponType.MartialRanged, HitWith.Dexterity);
                 case Options.Weapon.HeavyCrossbow:
-                    return new Models.WeaponModel("Heavy Crossbow", 1,10,DamageType.Piercing, WeaponType.MartialRanged);
+                    return new Models.WeaponModel("Heavy Crossbow", 1,10,DamageType.Piercing, WeaponType.MartialRanged, HitWith.Dexterity);
                 case Options.Weapon.Net:
-                    return new Models.WeaponModel("Net",1,1,DamageType.Bludgeoning, WeaponType.MartialRanged);
+                    return new Models.WeaponModel("Net",1,1,DamageType.Bludgeoning, WeaponType.MartialRanged, HitWith.Dexterity);
                 default:
                     throw new NotImplementedException();
             }

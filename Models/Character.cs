@@ -242,6 +242,17 @@ namespace DnDCharacterCreator.Models
             set { }
         }
 
+        public int HitBonus
+        {
+            get 
+            {
+                if (WeaponEquiped.HitWith == HitWith.Dexterity) return DexterityMod + Proficiency;
+                if (WeaponEquiped.HitWith == HitWith.Strength) return StrengthMod + Proficiency;
+                else return 0;
+            }
+            set { }
+        }
+
         private int ToModifier(int rawScore, bool prof) => prof ? Tables.ScoreMod[rawScore] + Proficiency : Tables.ScoreMod[rawScore];
 
         public bool IsResistant(DamageType type) => Resistances[(int)type];
@@ -536,5 +547,7 @@ namespace DnDCharacterCreator.Models
             }
             return sb.ToString();
         }
+
+
     }
 }
