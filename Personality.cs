@@ -20,6 +20,7 @@ namespace DnDCharacterCreator
         public Personality(Character character)
         {
             GetBackground();
+            Alignment = new Alignment();
         }
 
         private void GetBackground()

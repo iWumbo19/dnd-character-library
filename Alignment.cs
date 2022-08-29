@@ -10,6 +10,7 @@ namespace DnDCharacterCreator
         public Law Law;
         public Order Order;
 
+
         public override string ToString()
         {
             return $"{Law} {Order}";
