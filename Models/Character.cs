@@ -19,7 +19,7 @@ namespace DnDCharacterCreator.Models
             Resistances = new bool[Utilities.GetEnumLength<DamageType>()];
             ToolProficiency = new bool[Utilities.GetEnumLength<ArtisanTool>()];
             ArmorProficiency = new bool[Utilities.GetEnumLength<Armor>()];
-            WeaponProficiency = new bool[Utilities.GetEnumLength<WeaponModel>()];
+            WeaponProficiency = new bool[Utilities.GetEnumLength<Weapon>()];
             InstrumentProficiency = new bool[Utilities.GetEnumLength<Instrument>()];
             StandardLanguages = new bool[Utilities.GetEnumLength<StandardLanguage>()];
             ExoticLanguages = new bool[Utilities.GetEnumLength<ExoticLanguage>()];
@@ -27,6 +27,7 @@ namespace DnDCharacterCreator.Models
             Race = GetRandomRace();
             Class = GetRandomClass();
             Name = Names.Generate(this.Race);
+            Personality = new Personality(this);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();
             Race.Build(this);
@@ -48,7 +49,7 @@ namespace DnDCharacterCreator.Models
             Abilities = new bool[Utilities.GetEnumLength<Ability>()];
             Race = race;
             Class = _class;
-            Personality = new Personality();
+            Personality = new Personality(this);
             Name = Names.Generate(this.Race);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();
@@ -309,7 +310,7 @@ namespace DnDCharacterCreator.Models
         }
         public bool AddProficiency(List<Weapon> weapons)
         {
-            foreach (WeaponModel weapon in weapons)
+            foreach (Weapon weapon in weapons)
             {
                 AddProficiency(weapon);
             }
