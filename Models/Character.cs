@@ -525,5 +525,16 @@ namespace DnDCharacterCreator.Models
                     throw new Exception("Not a valid race for inputted character");
             }
         }
+
+        public string GetAbilitiesString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (Ability ability in (Ability[])Enum.GetValues(typeof(Ability)))
+            {
+                if (HasAbility(ability)) 
+                    sb.AppendLine(ability.ToString());
+            }
+            return sb.ToString();
+        }
     }
 }
