@@ -120,5 +120,10 @@ namespace DnDCharacterCreator.Backgrounds
                     return "";
             }
         }
+
+        public string GetBackgroundName()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
