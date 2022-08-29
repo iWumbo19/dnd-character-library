@@ -28,6 +28,7 @@ namespace DnDCharacterCreator.Models
             Class = GetRandomClass();
             Name = Names.Generate(this.Race);
             Personality = new Personality(this);
+            Personality.Build(this);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();
             Race.Build(this);
@@ -50,6 +51,7 @@ namespace DnDCharacterCreator.Models
             Race = race;
             Class = _class;
             Personality = new Personality(this);
+            Personality.Build(this);
             Name = Names.Generate(this.Race);
             Backstories bs = new Backstories(this);
             Backstory = bs.Generate();

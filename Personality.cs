@@ -20,10 +20,9 @@ namespace DnDCharacterCreator
         public Personality(Character character)
         {
             GetBackground();
-            Background.Build(character);
         }
 
-        public void GetBackground()
+        private void GetBackground()
         {
             switch (RNG.ReturnRandom<Background>())
             {
@@ -70,6 +69,11 @@ namespace DnDCharacterCreator
                     Background = new Acolyte();
                     break;
             }
+        }
+
+        public void Build(Character character)
+        {
+            Background.Build(character);
         }
         
 
