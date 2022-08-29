@@ -1,4 +1,5 @@
-﻿using DnDCharacterCreator.Models;
+﻿using DnDCharacterCreator.Interfaces;
+using DnDCharacterCreator.Models;
 using DnDCharacterCreator.Options;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace DnDCharacterCreator.Backgrounds
 {
-    public class Outlander
+    public class Outlander : IBackground
     {
         public void Build(Character character)
         {

@@ -14,7 +14,7 @@ namespace DnDCharacterCreator.Backgrounds
             character.Personality.Trait = ChooseTrait();
             character.AddProficiency(Skill.Athletics);
             character.AddProficiency(Skill.Perception);
-            character.AddProficiency(ArtisanTool.NavigatorsTools)
+            character.AddProficiency(ArtisanTool.NavigatorsTools);
         }
 
         public string ChooseBond()

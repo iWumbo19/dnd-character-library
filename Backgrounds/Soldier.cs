@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DnDCharacterCreator.Backgrounds
 {
-    public class Solider : IBackground
+    public class Soldier : IBackground
     {
         public void Build(Character character)
         {
