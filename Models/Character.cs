@@ -34,7 +34,7 @@ namespace DnDCharacterCreator.Models
             Race.Build(this);
             Class.LevelOne(this);
         }
-        public Character(IClass _class, IRace race)
+        public Character(IClass _class=null, IRace race=null)
         {
             Level = 1;
             Stats = new int[6];
@@ -43,13 +43,13 @@ namespace DnDCharacterCreator.Models
             Resistances = new bool[Utilities.GetEnumLength<DamageType>()];
             ToolProficiency = new bool[Utilities.GetEnumLength<ArtisanTool>()];
             ArmorProficiency = new bool[Utilities.GetEnumLength<Armor>()];
-            WeaponProficiency = new bool[Utilities.GetEnumLength<WeaponModel>()];
+            WeaponProficiency = new bool[Utilities.GetEnumLength<Weapon>()];
             InstrumentProficiency = new bool[Utilities.GetEnumLength<Instrument>()];
             StandardLanguages = new bool[Utilities.GetEnumLength<StandardLanguage>()];
             ExoticLanguages = new bool[Utilities.GetEnumLength<ExoticLanguage>()];
             Abilities = new bool[Utilities.GetEnumLength<Ability>()];
-            Race = race;
-            Class = _class;
+            Race = race == null ? GetRandomRace() : race;
+            Class = _class == null ? GetRandomClass() : _class;
             Personality = new Personality(this);
             Personality.Build(this);
             Name = Names.Generate(this.Race);
