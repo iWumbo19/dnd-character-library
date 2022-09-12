@@ -4,7 +4,7 @@ using DnDCharacterCreator.Options;
 
 namespace DnDCharacterCreator.Races
 {
-    class Tiefling : IRace
+    public class Tiefling : IRace
     {
         public Race Race { get; private set; } = Race.Tiefling;
         public void Build(Character character)
